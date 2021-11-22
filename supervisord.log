@@ -19,3 +19,9 @@
 2021-11-19 00:20:49,899 INFO exited: worker (exit status 1; not expected)
 2021-11-19 00:20:50,946 INFO spawned: 'worker' with pid 54099
 2021-11-19 00:20:51,959 INFO success: worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2021-11-19 08:01:59,567 INFO exited: worker (exit status 1; not expected)
+2021-11-19 08:02:00,576 INFO spawned: 'worker' with pid 76957
+2021-11-19 08:02:01,582 INFO success: worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2021-11-19 15:46:06,079 INFO exited: worker (exit status 1; not expected)
+2021-11-19 15:46:07,095 INFO spawned: 'worker' with pid 16303
+2021-11-19 15:46:08,106 INFO success: worker entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
