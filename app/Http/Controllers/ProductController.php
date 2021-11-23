@@ -75,7 +75,14 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        $images = $product->images()->get();
+
+        // Tra ve view cua trang homepage san pham
+        return view('', [
+            'product'=>$product, 
+            'images'=>$images,
+        ]);
     }
 
     /**
