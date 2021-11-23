@@ -117,12 +117,17 @@ class ProductController extends Controller
             $images = Product::find($id)->images()->get();
 
             foreach($images as $image) {
-                Storage::delete($image->url);
+                Storage::delete('/images/'.$image->url);
+                Image::find($image->id)->delete();
             }
 
-            foreach($images as $image) {
-                $imageUD = Image::find($image->id);
-                
+            foreach($request->file('images') as $image) {
+                $paths = explode("/", $image->store('/images'));
+
+                Image::create([
+                    'url' => $paths[1],
+                    'product_id' => $id
+                ]);
             }
         }
         return redirect()->route('admin.index')->with(['message'=>'更新の成功']);

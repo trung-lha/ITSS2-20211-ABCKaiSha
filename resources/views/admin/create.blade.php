@@ -1,3 +1,4 @@
+@section('title', 'Create Product')
 @extends('admin.index')
 @section('content')
 <a href="{{route('admin.index')}}" class="btn btn-primary active" role="button">バック</a>

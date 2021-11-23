@@ -25,8 +25,7 @@ class ImageFactory extends Factory
             File::makeDirectory($filepath);
         }
         return [
-            // 'url' => $this->faker->imageUrl($this->width, $this->height, $category = 'food'),
-            'url' => $this->faker->image($filepath, $this->width, $this->height, 'food', false),
+            'url' => $this->faker->image($filepath, $this->width, $this->height, null, false),
             'product_id' => $this->faker->numberBetween(1, \App\Models\Product::count())
         ];
     }
