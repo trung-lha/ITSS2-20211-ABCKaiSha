@@ -8,6 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    
+    protected $fillable = ['name', 'description', 'category_id'];
+    public $timestamps = true;
+
+    public function format() {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'image' => $this->images()->first()->url,
+            'category_name' => $this->category()->first()->name,
+        ];
+    }
 
     public function category()
     {
