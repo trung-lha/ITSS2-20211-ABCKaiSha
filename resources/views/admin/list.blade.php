@@ -1,3 +1,4 @@
+@section('title', 'List Product')
 @extends('admin.index')
 @section('content')
 
@@ -49,7 +50,7 @@
             </td>
             <td>{{$product['description']}}</td>
             <td style="text-align: start; width: 140px;">
-                <button type="button" class="btn btn-primary" onclick="submitEdit(`{{$product['id']}}`)"><i class="fal fa-pencil-alt"></i></button>
+                <a name="" id="" class="btn btn-primary" href="{{url('/admin/products')}}/{{$product['id']}}/edit" role="button"><i class="fal fa-pencil-alt"></i></a>
                 &nbsp;&nbsp;
                 <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary" onclick="showModalDelete(`{{$product['id']}}`)"><i class="fas fa-trash"></i></button>
             </td>
@@ -59,8 +60,8 @@
     </tbody>
 </table>
 <div class="d-flex justify-content-end">
-    <a class="btn btn-primary mr-2" href="{{$products->previousPageUrl()}}" role="button">前</a>
-    <a class="btn btn-primary" href="{{$products->nextPageUrl()}}" role="button">次</a>
+    <a class="btn btn-primary mr-2 {{($products->currentPage() == 1? 'disabled': '')}}" href="{{$products->previousPageUrl()}}" role="button">前</a>
+    <a class="btn btn-primary {{($products->currentPage() == $products->lastPage()? 'disabled': '')}}" href="{{$products->nextPageUrl()}}" role="button">次</a>
 </div>
 
 <!-- Modal -->
@@ -88,8 +89,6 @@
     </div>
 </div>
 
-<form id="formEdit" method="get"></form>
-
 <script type="text/javascript">
     function showModalDelete(id) {
         var formDelete = document.getElementById('formDelete');
@@ -99,12 +98,6 @@
     function submitFormDelete() {
         var formDelete = document.getElementById('formDelete');
         formDelete.submit();
-    }
-
-    function submitEdit(id) {
-        var formEdit = document.getElementById('formEdit');
-        formEdit.action = `{{url('/admin/products')}}/${id}/edit`;
-        formEdit.submit();
     }
 </script>
 

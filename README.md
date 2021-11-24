@@ -19,6 +19,8 @@
 -   Generate app key:
     `docker-compose exec php-fpm php artisan key:generate`
 -   Migration and seeding: `docker-compose exec php-fpm php artisan migrate --seed`
+-   Reset Migration and seeding: `docker-compose exec php-fpm php artisan migrate:fresh --seed`
+-   Storage Link: `docker-compose exec php-fpm php artisan storage:link`
 -   Cache config:
     `docker-compose exec php-fpm php artisan config:cache`
 -   Done
@@ -30,9 +32,9 @@
 - ...
 ## Todo:
 -   ~~製品リスト~~
--   商品を追加
--   商品の編集
--   製品の削除
+-   ~~商品を追加~~
+-   ~~商品の編集~~
+-   ~~製品の削除~~
 -   製品詳細
 -   事業内容
 -   採用登録フォーム
