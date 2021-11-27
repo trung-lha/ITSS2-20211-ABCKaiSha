@@ -15,4 +15,3 @@ yarn-error.log
 /.vscode
 supervisord.log
 supervisord.pid
-/docker/*
