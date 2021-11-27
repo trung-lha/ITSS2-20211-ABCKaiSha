@@ -30,14 +30,14 @@ class ProductController extends Controller
     public function listProductsAndCategories()
     {
         $products = Product::orderBy('id', 'desc')->paginate(8);
-        $categoryNames = [];
+        $categories = Category::get();
         foreach ($products as $key => $product) {
             $products[$key] = $product->format();
-            $categoryName = $product->category->name;
-            if(!in_array($categoryName, $categoryNames))
-                array_push($categoryNames, $categoryName);
+            // $categoryName = $product->category->name;
+            // if(!in_array($categoryName, $categoryNames))
+            //     array_push($categoryNames, $categoryName);
         }
-        return view('users.home', ['products' => $products, 'categoryNames' => $categoryNames]);
+        return view('users.home', ['products' => $products, 'categories' => $categories]);
     }
     public function detailProduct(Request $request)
     {
