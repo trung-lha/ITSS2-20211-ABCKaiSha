@@ -80,7 +80,7 @@ class ProductController extends Controller
 
         // Tra ve view cua trang homepage san pham
         return view('', [
-            'product'=>$product, 
+            'product'=>$product,
             'images'=>$images,
         ]);
     }
@@ -98,7 +98,7 @@ class ProductController extends Controller
         $categories = Category::all();
 
         return view('admin.edit', [
-            'product'=>$product, 
+            'product'=>$product,
             'images'=>$images,
             'categories'=>$categories
         ]);

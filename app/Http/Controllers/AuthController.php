@@ -13,7 +13,7 @@ class AuthController extends Controller
         return view('login');
     }
 
-    public function post(Request $req) 
+    public function post(Request $req)
     {
         $credentials = $req->only('email', 'password');
         // dd($credentials);
@@ -27,6 +27,8 @@ class AuthController extends Controller
 
     public function logout()
     {
-        
+        Auth::logout();
+
+        return redirect()->route('admin.login');
     }
 }
