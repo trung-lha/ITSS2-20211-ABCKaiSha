@@ -19,15 +19,34 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
-        $products = Product::orderBy('id', 'desc')->paginate(20);
-
+        $products = Product::orderBy('id', 'desc')->paginate(10);
         foreach ($products as $key => $product) {
             $products[$key] = $product->format();
         }
+
         return view('admin.list', ['products' => $products]);
     }
 
+    public function listProductsAndCategories()
+    {
+        $products = Product::orderBy('id', 'desc')->paginate(8);
+        $categoryNames = [];
+        foreach ($products as $key => $product) {
+            $products[$key] = $product->format();
+            $categoryName = $product->category->name;
+            if(!in_array($categoryName, $categoryNames))
+                array_push($categoryNames, $categoryName);
+        }
+        return view('users.home', ['products' => $products, 'categoryNames' => $categoryNames]);
+    }
+    public function detailProduct(Request $request)
+    {
+        $product = Product::find($request->productId);
+        $image = $product->images->all();
+        $urlImage = $image[0]->url;
+
+        return view('users.detail', ['product' => $product, 'urlImage' => $urlImage]);
+    }
     /**
      * Show the form for creating a new resource.
      *
