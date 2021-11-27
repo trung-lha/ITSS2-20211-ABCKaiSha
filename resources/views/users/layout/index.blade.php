@@ -19,11 +19,14 @@
     {{-- <script src="{{ asset('js/slider.js') }}"></script> --}}
     <script src="{{ asset('js/app.js') }}"></script>
 </head>
-
 <body>
     @include('users.layout.header')
-    <div class="container mt-4">
-        @yield('content')
+    <!-- Tuy trang ma tryen vao title khac nhau -> TODO: truyen bien -->
+    <h1 class="header-title text-center">事業内容・ビジネス商品</h1>
+    <div class="container">
+        <div class="container-single-page">
+            @yield('content')
+        </div>
     </div>
 
 <script>
