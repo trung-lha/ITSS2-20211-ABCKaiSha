@@ -44,3 +44,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     // url/admin/products/{id}
     Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 });
+
+Route::prefix('user')->group(function () {
+    Route::get('/home',[ProductController::class, 'listProductsAndCategories'])->name('user.home');
+    Route::get('detail/{productId}', [ProductController::class, 'detailProduct'])->name('product.detail');
+});
