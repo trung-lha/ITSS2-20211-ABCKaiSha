@@ -1,6 +1,7 @@
 @extends('users.layout.index')
 @section('content')
 @include('users.layout.slider')
+
 @if(!empty($product))
 <div class="row">
     <div>{{$product["description"]}}</div>
