@@ -3,7 +3,7 @@
 @section('content')
 
 @if(Session::has('message'))
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" 
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true"
     data-delay="2000" style="position: absolute; top: 1rem; right: 1rem; width: 200px;"
 
 >
@@ -45,7 +45,7 @@
         <tr>
             <th>{{$product['id']}}</th>
             <td class="td-start">{{$product['name']}}</td>
-            <td style="text-align: center; width: 200px;">
+            <td style="text-align: center; width: 200px; height: 130px">
                 <img src="{{asset('/storage/images/'.$product['image'])}}" alt="{{$product['name']}}" class="img-thumbnail" width="140" height="200">
             </td>
             <td>{{$product['description']}}</td>
@@ -60,8 +60,9 @@
     </tbody>
 </table>
 <div class="d-flex justify-content-end">
-    <a class="btn btn-primary mr-2 {{($products->currentPage() == 1? 'disabled': '')}}" href="{{$products->previousPageUrl()}}" role="button">前</a>
-    <a class="btn btn-primary {{($products->currentPage() == $products->lastPage()? 'disabled': '')}}" href="{{$products->nextPageUrl()}}" role="button">次</a>
+    {{-- <a class="btn btn-primary mr-2 {{($products->currentPage() == 1? 'disabled': '')}}" href="{{$products->previousPageUrl()}}" role="button">前</a>
+    <a class="btn btn-primary {{($products->currentPage() == $products->lastPage()? 'disabled': '')}}" href="{{$products->nextPageUrl()}}" role="button">次</a> --}}
+    {{ $products->links() }}
 </div>
 
 <!-- Modal -->
