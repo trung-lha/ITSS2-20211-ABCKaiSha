@@ -43,10 +43,11 @@ class ProductController extends Controller
     public function detailProduct(Request $request)
     {
         $product = Product::find($request->productId);
+        // TODO: sua anh 
         $image = $product->images->all();
         $urlImage = $image[0]->url;
 
-        return view('users.detail', ['product' => $product, 'urlImage' => $urlImage]);
+        return view('users.detail', ['product' => $product, 'urlImage' => $urlImage, "images" => $image]);
     }
 
     public function groupProduct(Request $request)
