@@ -3,19 +3,21 @@
     @include('users.layout.slider')
     <div class="row mt-4 mb-2">
         <div class="col">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active group" data-id="4" id="all-product">All</a>
+            <ul class="nav nav-tabs home-tabs">
+                <li class=home-tabs-empty></li>
+                <li class="nav-item home-tabs-item">
+                    <a class="nav-link active group" data-id="4" id="all-product">すべて</a>
                 </li>
                 @foreach ($categories as $item)
-                    <li class="nav-item">
+                    <li class="nav-item home-tabs-item">
                         <a class="nav-link group" data-id="{{ $item->id }}">{{$item->name}}</a>
                     </li>
                 @endforeach
+                <li class=home-tabs-empty></li>
             </ul>
         </div>
     </div>
-    <div class="row">
+    <div class="row text-center">
         <div class="col" id="list-productItems">
             @include('users.listProducts', ['productList' => $products])
         </div>

@@ -1,15 +1,18 @@
-<div class="row">
+<div class="productList row">
     @if (empty($productList) == false)
         @foreach($productList as $key => $product)
-            <div class="col-md-3">
-                <div style="height: 150px; width: auto">
-                    <a href="{{ route('product.detail', $product['id']) }}"> <img src="{{asset('/storage/images/'.$imageUrl[$key])}}" alt="{{$product['name']}}" class="img-thumbnail" style="object-fit: cover;"></a>
+            <div class="col-md-3 mb-3">
+                <div class="card text-center" style="width: auto">
+                    <img src="{{asset('/storage/images/'.$imageUrl[$key])}}" alt="{{$product['name']}}" class="card-img-top" style="object-fit: cover;">
+                    <div class="card-body">
+                        <p><small class="card-title">{{$product['name']}}</small></p>
+                        <a href="{{ route('product.detail', $product['id']) }}" class="btn btn-warning small-text"><small>もっと見る</small></a>
+                    </div>
                 </div>
-                <div>{{$product['name']}}</div>
             </div>
         @endforeach
     @endif
 </div>
-<div class="text-center mt-3" style="margin-left: 35%">
+<div class="productList-pagination text-center mt-3">
     {{ $productList->links() }}
 </div>
