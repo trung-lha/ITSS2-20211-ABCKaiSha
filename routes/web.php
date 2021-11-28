@@ -46,6 +46,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 });
 
 Route::prefix('user')->group(function () {
-    Route::get('/home',[ProductController::class, 'listProductsAndCategories'])->name('user.home');
     Route::get('detail/{productId}', [ProductController::class, 'detailProduct'])->name('product.detail');
+    Route::get('/home',[ProductController::class, 'listProductsAndCategories'])->name('user.home');
+    Route::get('/home/{categoryId}', [ProductController::class, 'groupProduct'])->name('groupProduct');
 });
