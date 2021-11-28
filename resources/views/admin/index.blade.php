@@ -20,16 +20,27 @@
       pointer-events: none;
       cursor: default;
     }
-  </style>
+    /* .mt-4{
+    background-color: #ebe1e1;
+    padding: 20px;
+    }
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 1px solid #a55b5b;
+    }
+    .table-bordered td, .table-bordered th {
+      border: 1px solid #a55b5b;
+    } */
+    </style>
 </head>
 
 <body>
   @include('admin.layout.header')
-  <div class="container mt-4">
-    <div class="font-weight-bold mb-3" style="font-size: xx-large;">製品</div>
+  <div class="container mt-4" >
+    <!-- <div class="font-weight-bold mb-3" style="font-size: xx-large;">製品</div> -->
     @yield('content')
   </div>
-  <div style="margin-bottom: 100px;"></div>
+  <div style="margin-bottom: 20px;"></div>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

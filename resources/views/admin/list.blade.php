@@ -1,10 +1,32 @@
 @section('title', 'List Product')
 @extends('admin.index')
 @section('content')
-
+<style>
+    .mt-4{
+    background-color: #f2f5c5;
+    padding: 20px;
+    }
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 1px solid #a55b5b;
+    }
+    .table-bordered td, .table-bordered th {
+      border: 1px solid #a55b5b;
+    }
+    .modal-dialog{
+        margin-top: 150px;
+    }
+    .modal-content{
+        text-align: center;
+    }
+    .modal-footer{
+        justify-content: space-between;
+    }
+    </style>
+<div class="font-weight-bold mb-3" style="font-size: xx-large; text-align: center">製品リスト</div>
 @if(Session::has('message'))
 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true"
-    data-delay="2000" style="position: absolute; top: 1rem; right: 1rem; width: 200px;"
+    data-delay="7000" style="position: absolute; top: 1rem; right: 1rem; width: 200px;"
 
 >
     <div class="toast-header">
@@ -20,19 +42,19 @@
     </div>
 </div>
 @endif
-<div class="c-container d-flex justify-content-between">
-    <p style="font-size: x-large; font-weight: 500;">製品リスト</p>
+<div class="c-container d-flex justify-content-between" style = "float: right; padding-bottom: 20px; margin-top: 30px">
+    <!-- <p style="font-size: x-large; font-weight: 500;">製品リスト</p> -->
     <a name="" id="" class="btn btn-primary" href="{{route('admin.create')}}" role="button">
         <i class="fas fa-plus-circle"></i>
         &nbsp;
         新製品を追加する
     </a>
 </div>
-<p style="font-size: x-large; font-weight: 500;">連絡線</p>
+<!-- <p style="font-size: x-large; font-weight: 500;">連絡線</p> -->
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">番号</th>
             <th scope="col">製品名</th>
             <th scope="col">イメージ</th>
             <th scope="col">説明</th>
@@ -43,10 +65,10 @@
         @if (empty($products) == false)
         @foreach($products as $product)
         <tr>
-            <th>{{$product['id']}}</th>
+            <th style = "width: 60px" >{{$product['id']}}</th>
             <td class="td-start">{{$product['name']}}</td>
             <td style="text-align: center; width: 200px; height: 130px">
-                <img src="{{asset('/storage/images/'.$product['image'])}}" alt="{{$product['name']}}" class="img-thumbnail" width="140" height="200">
+                <img src="{{asset('/storage/images/'.$product['image'])}}" alt="{{$product['name']}}" class="img-thumbnail" style = " width:200px; height:130px" >
             </td>
             <td>{{$product['description']}}</td>
             <td style="text-align: start; width: 140px;">
@@ -79,10 +101,10 @@
                 <form method="post" id="formDelete">
                     @csrf
                     <input type="hidden" name="_method" value="delete">
-                    リストから製品・・・を削除しますか？
+                    この製品を削除しますか？
                 </form>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" >
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
                 <button type="button" class="btn btn-primary" onclick="submitFormDelete()">削除</button>
             </div>
