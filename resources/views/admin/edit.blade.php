@@ -1,18 +1,18 @@
 @section('title', 'Edit Product')
 @extends('admin.index')
 @section('content')
-<a href="{{route('admin.index')}}" class="btn btn-primary active" role="button">バック</a>
 
-<div class="c-container d-flex text-center mt-2">
-    <p style="font-size: x-large; font-weight: 500;" class="ml-5">新製品を追加する</p>
-</div>
-<div class="d-flex justify-content-start mb-3">
-    <p style="font-size: x-large; font-weight: 500; margin-right: 10%;">連絡線</p>
-    <p style="font-size: larger; font-weight: 480;">以下のフォームに製品情報を入力してください</p>
-</div>
-<div class="card mr-5" style="width: 35rem;">
+<style>
+    .mt-4{
+    display: grid;
+    justify-content: center;
+    background-color: #ebe1e1;
+    padding: 20px;
+    }
+  </style>
+<div class="card" style="width: 35rem; ">
     <div class="card-body">
-        <h5 class="card-title text-center mb-2">情報</h5>
+        <h5 class="card-title text-center mb-2"　 style="padding-bottom: 40px; padding-top: 10px; font-size: x-large">詳細情報</h5>
         <form class="container" id="form_edit" enctype="multipart/form-data" method="POST">
             @csrf
             @method('PUT')
@@ -65,10 +65,9 @@
         </form>
     </div>
 </div>
-<div class="text-center mt-3" style="width: 35rem;">
+<div class="text-center mt-3">
     <button type="submit" class="btn btn-primary" onclick="onSubmitForm(`{{$product->id}}`)">更新</button>
 </div>
-
 <script type="text/javascript">
     function onSubmitForm(id) {
         var form = document.getElementById('form_edit');

@@ -1,16 +1,18 @@
 @section('title', 'Create Product')
 @extends('admin.index')
 @section('content')
-<a href="{{route('admin.index')}}" class="btn btn-primary active" role="button">バック</a>
-
-<div class="c-container d-flex text-center mt-2">
-    <p style="font-size: x-large; font-weight: 500;" class="ml-5">新製品を追加する</p>
-</div>
-<div class="d-flex justify-content-start mb-3">
-    <p style="font-size: x-large; font-weight: 500; margin-right: 10%;">連絡線</p>
-    <p style="font-size: larger; font-weight: 480;">以下のフォームに製品情報を入力してください</p>
-</div>
-<div class="card mr-5" style="width: 35rem;">
+<style>
+    .mt-4{
+    display: grid;
+    justify-content: center;
+    background-color: #ebe1e1;
+    padding: 20px;
+    }
+  </style>
+   <h5 class="card-title text-center mb-2"　 style="padding-bottom: 40px; padding-top: 10px; font-size: x-large">新製品を追加する</h5>
+    <!-- <p style="font-size: x-large; font-weight: 500; margin-right: 10%;">連絡線</p> -->
+    <h5 class="card-title text-center mb-2"　 style="padding-bottom: 20px;font-size: larger; font-weight: 480; text-align: center">以下のフォームに製品情報を入力してください</h5>
+<div class="card ">
     <div class="card-body">
         <h5 class="card-title text-center mb-2">情報</h5>
         <form class="container" id="form_create" enctype="multipart/form-data" method="POST" action="{{route('admin.store')}}">
@@ -55,7 +57,7 @@
         </form>
     </div>
 </div>
-<div class="text-center mt-3" style="width: 35rem;">
+<div class="text-center mt-3" style="width: 35rem; padding: 10px;">
     <button type="submit" class="btn btn-primary" onclick="onSubmitForm()">追加</button>
 </div>
 
