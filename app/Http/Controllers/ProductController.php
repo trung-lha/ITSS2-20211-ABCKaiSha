@@ -31,13 +31,14 @@ class ProductController extends Controller
     {
         $products = Product::orderBy('id', 'desc')->paginate(8);
         $categories = Category::get();
+        $imageUrl = [];
         foreach ($products as $key => $product) {
             $products[$key] = $product->format();
-            // $categoryName = $product->category->name;
-            // if(!in_array($categoryName, $categoryNames))
-            //     array_push($categoryNames, $categoryName);
+            $img = $product->images->all();
+            $url = $img[0]->url;
+             array_push($imageUrl, $url);
         }
-        return view('users.home', ['products' => $products, 'categories' => $categories]);
+        return view('users.home', compact('products', 'categories', 'imageUrl'));
     }
     public function detailProduct(Request $request)
     {
@@ -46,6 +47,22 @@ class ProductController extends Controller
         $urlImage = $image[0]->url;
 
         return view('users.detail', ['product' => $product, 'urlImage' => $urlImage]);
+    }
+
+    public function groupProduct(Request $request)
+    {
+        if($request->categoryId == 4){
+            $productList = Product::orderBy('id', 'desc')->paginate(8);
+        } else {
+            $productList = Product::where('category_id', $request->categoryId)->paginate(8);
+        }
+        $imageUrl = [];
+        foreach ($productList as $key => $product) {
+            $img = $product->images->all();
+            $url = $img[0]->url;
+             array_push($imageUrl, $url);
+        }
+        return view('users.listProducts', compact('productList', 'imageUrl'))->render();
     }
     /**
      * Show the form for creating a new resource.
