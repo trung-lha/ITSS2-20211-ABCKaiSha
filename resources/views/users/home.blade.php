@@ -31,7 +31,9 @@
             },
         });
         $(".group").on('click', function() {
+            $('.group').removeClass("active");
             var id = $(this).data('id');
+            $(this).addClass("active");
             $.ajax({
                 url: '/user/home/'+id,
                 method: "GET",
