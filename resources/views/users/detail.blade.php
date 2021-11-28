@@ -20,10 +20,12 @@
                     <div class="row"><div class="col-12 title mb-2">商品イメージ</div></div>
                     <div class="row">
                         <div class="col-12 image-list">
-                            <img src="{{asset('/images/default.jpeg')}}" alt="default-image" />
-                            <img src="{{asset('/images/default.jpeg')}}" alt="default-image" />
-                            <img src="{{asset('/images/default.jpeg')}}" alt="default-image" />
-                            <img src="{{asset('/images/default.jpeg')}}" alt="default-image" />
+                            <!-- TODO: Khong hien thi anh?? -->
+                            @if(empty($images) == false)
+                                @foreach($images as $image)
+                                    <img src="{{asset('/storage/images/'.$image->url)}}" alt="{{$product->name}}" class="mr-1">
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
