@@ -9,8 +9,8 @@
                     <a class="nav-link active group" data-id="4" id="all-product">すべて</a>
                 </li>
                 @foreach ($categories as $item)
-                    <li class="nav-item home-tabs-item">
-                        <a class="nav-link group" data-id="{{ $item->id }}">{{$item->name}}</a>
+                    <li class="nav-item home-tabs-item item">
+                        <a class="nav-link group " data-id="{{ $item->id }}">{{$item->name}}</a>
                     </li>
                 @endforeach
                 <li class=home-tabs-empty></li>

@@ -5,7 +5,9 @@
                 <div class="card text-center" style="width: auto">
                     <img src="{{asset('/storage/images/'.$imageUrl[$key])}}" alt="{{$product['name']}}" class="card-img-top" style="object-fit: cover;">
                     <div class="card-body">
-                        <p><small class="card-title">{{$product['name']}}</small></p>
+                        <div class="card-title">{{$product['name']}}
+                            <span class="tooltiptext">{{$product['name']}}</span>
+                        </div>
                         <a href="{{ route('product.detail', $product['id']) }}" class="btn btn-warning small-text"><small>もっと見る</small></a>
                     </div>
                 </div>
