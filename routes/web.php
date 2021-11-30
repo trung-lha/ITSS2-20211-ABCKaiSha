@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AuthController;;
 use App\Http\Controllers\ProductController;
-use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,20 +15,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
-
-Route::prefix('home')->group(function () {
-    // url/home/category/{id}
-    Route::get('/category/{id}', [CategoryController::class, 'show']);
+Route::get('/', function ()
+{
+   return redirect(route('user.home')); 
 });
+
+Route::get('detail/{productId}', [ProductController::class, 'detailProduct'])->name('product.detail');
+Route::get('/home', [ProductController::class, 'listProductsAndCategories'])->name('user.home');
+Route::get('/home/{categoryId}', [ProductController::class, 'groupProduct'])->name('groupProduct');
 
 Route::get('/admin/login', [AuthController::class, 'get'])->name('admin.login');
 Route::post('/admin/login', [AuthController::class, 'post'])->name('admin.login.post');
 Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('/');
     // url/admin/products
     Route::get('/products', [ProductController::class, 'index'])->name('admin.index');
     // url/admin/products/create
@@ -43,10 +42,4 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::put('/products/{id}', [ProductController::class, 'update']);
     // url/admin/products/{id}
     Route::delete('/products/{id}', [ProductController::class, 'destroy']);
-});
-
-Route::prefix('user')->group(function () {
-    Route::get('detail/{productId}', [ProductController::class, 'detailProduct'])->name('product.detail');
-    Route::get('/home',[ProductController::class, 'listProductsAndCategories'])->name('user.home');
-    Route::get('/home/{categoryId}', [ProductController::class, 'groupProduct'])->name('groupProduct');
 });

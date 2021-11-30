@@ -3,7 +3,7 @@
         @foreach($productList as $key => $product)
             <div class="col-md-3 mb-3">
                 <div class="card text-center" style="width: auto">
-                    <img src="{{asset('/storage/images/'.$imageUrl[$key])}}" alt="{{$product['name']}}" class="card-img-top" style="object-fit: cover;">
+                    <img src="{{$imageUrl[$key]}}" alt="{{$product['name']}}" class="card-img-top" style="object-fit: cover; height: 131px; width: 174px;">
                     <div class="card-body">
                         <div class="card-title">{{$product['name']}}
                             <span class="tooltiptext">{{$product['name']}}</span>

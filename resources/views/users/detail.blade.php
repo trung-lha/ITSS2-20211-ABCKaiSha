@@ -8,7 +8,7 @@
         <div class="card-body">
             <div class="row info">
                 <div class="col-4 product-image">
-                    <img src="{{asset('/storage/images/'.$urlImage)}}" alt="{{$product['name']}}" />
+                    <img src="{{$urlImage}}" alt="{{$product['name']}}" />
                 </div>
                 <div class="col-8 product-description">
                     <h4>{{$product["name"]}}</h4>
@@ -22,7 +22,7 @@
                         <div class="col-12 image-list">
                             @if(empty($images) == false)
                                 @foreach($images as $image)
-                                    <img src="{{asset('/storage/images/'.$image->url)}}" alt="{{$product->name}}" class="mr-2">
+                                    <img src="{{$image->url}}" alt="{{$product->name}}" class="mr-2">
                                 @endforeach
                             @endif
                         </div>

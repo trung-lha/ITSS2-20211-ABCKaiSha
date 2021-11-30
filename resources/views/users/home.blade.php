@@ -6,7 +6,7 @@
             <ul class="nav nav-tabs home-tabs">
                 <li class=home-tabs-empty></li>
                 <li class="nav-item home-tabs-item">
-                    <a class="nav-link active group" data-id="4" id="all-product">すべて</a>
+                    <a class="nav-link active group" data-id="0" id="all-product">すべて</a>
                 </li>
                 @foreach ($categories as $item)
                     <li class="nav-item home-tabs-item item">
@@ -26,7 +26,7 @@
 <script type="text/javascript">
     $(document).ready(function (){
         $.ajax({
-            url: '/user/home/'+4,
+            url: '/home/'+0,
             method: "GET",
             success: function(data) {
                 $('#list-productItems').html(data);
@@ -37,7 +37,7 @@
             var id = $(this).data('id');
             $(this).addClass("active");
             $.ajax({
-                url: '/user/home/'+id,
+                url: '/home/'+id,
                 method: "GET",
                 success: function(data) {
                     $('#list-productItems').html(data);
@@ -46,7 +46,7 @@
         });
         $(document).on('click', '.pagination a', function(event) {
             event.preventDefault();
-            var link = $(this).attr('href').split("/")[5];
+            var link = $(this).attr('href').split("/")[4];
             var categoryId = link.split("?", 1);
             var page = link.split("?page=")[1];
             // alert(categoryId, page);
