@@ -2,6 +2,14 @@
 @section('content')
 <section class="ftco-section">
     @include('users.layout.slider')
+    <div class="container mt-5">
+        <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section text-center">
+                <h2 class="mb-4">商品</h2>
+                <p>はるか遠く、山という言葉の後ろ、ボカリアとコンソナンティアの国から遠く離れて、盲目のテキストがあります。</p>
+            </div>
+        </div>   		
+    </div>
     <div class="container mt-5" id="homeRef">
         <div class="row justify-content-center">
             <div class="col-md-10 mb-5 text-center">
@@ -46,7 +54,9 @@
             var page = link.split("?page=")[1];
             // alert(categoryId, page);
             getMoreProduct(categoryId, page);
-            // TODO: Scroll to #homeRef
+            $('html,body').animate({
+              scrollTop: $('#homeRef').offset().top
+            }, 500);
         });
 
         function getMoreProduct(categoryId, page){

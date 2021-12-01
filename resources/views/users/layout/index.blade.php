@@ -212,43 +212,72 @@
       .bg-green {
         background: #82ae46;
       }
-      .home-banner {
+    /* Heading */
+    .heading-section {
+      position: relative; }
+      .heading-section .subheading {
+        font-size: 18px;
+        display: block;
+        margin-bottom: 10px;
+        font-family: "Lora", Georgia, serif;
+        color: #82ae46; }
+      .heading-section h2 {
         position: relative;
+        font-size: 40px;
+        font-weight: 550;
+        color: #000000;
+        font-family: "Poppins", Arial, sans-serif; }
+        @media (max-width: 767.98px) {
+          .heading-section h2 {
+            font-size: 28px; } }
+      .heading-section.heading-section-white .subheading {
+        color: rgba(255, 255, 255, 0.9); }
+      .heading-section.heading-section-white h2 {
+        font-size: 30px;
+        color: #fff; }
+        .heading-section.heading-section-white h2:after, .heading-section.heading-section-white h2:before {
+          display: none; }
+      .heading-section.heading-section-white p {
+        color: rgba(255, 255, 255, 0.9); }
+
+    /* Slider */
+    .home-banner {
+      position: relative;
+      height: 400px;
+      z-index: 0; }
+      .home-banner .slider-item {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
         height: 400px;
+        position: relative;
         z-index: 0; }
-        .home-banner .slider-item {
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center center;
+        @media (max-width: 1199.98px) {
+          .home-banner .slider-item {
+            background-position: center center !important; } }
+        .home-banner .slider-item .overlay {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: #000000;
+          opacity: .2; }
+        .home-banner .slider-item .slider-text {
           height: 400px;
-          position: relative;
           z-index: 0; }
-          @media (max-width: 1199.98px) {
-            .home-banner .slider-item {
-              background-position: center center !important; } }
-          .home-banner .slider-item .overlay {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #000000;
-            opacity: .2; }
-          .home-banner .slider-item .slider-text {
-            height: 400px;
-            z-index: 0; }
-            @media (max-width: 991.98px) {
-              .home-banner .slider-item .slider-text {
-                text-align: center; } }
-            .home-banner .slider-item .slider-text h1 {
-              font-size: 6vw;
-              color: #fff;
-              line-height: 1.3;
-              font-weight: 400;
-              font-family: "Amatic SC", cursive; }
-              @media (max-width: 767.98px) {
-                .home-banner .slider-item .slider-text h1 {
-                  font-size: 40px; } }
+          @media (max-width: 991.98px) {
+            .home-banner .slider-item .slider-text {
+              text-align: center; } }
+          .home-banner .slider-item .slider-text h1 {
+            font-size: 6vw;
+            color: #fff;
+            line-height: 1.3;
+            font-weight: 400;
+            font-family: "Amatic SC", cursive; }
+            @media (max-width: 767.98px) {
+              .home-banner .slider-item .slider-text h1 {
+                font-size: 40px; } }
       #carouselBanner .carousel-item .overlay {
         position: absolute;
         top: 0;
@@ -474,12 +503,23 @@
         0% {
           margin-top: 20px;
           opacity: 0; } }
+      
+      /* Detail Page */
+      .detail .image {
+        padding: 0;}
+      .product-details h3 {
+        font-size: 30px;
+        font-weight: 400; }
+      .other .title { padding: 0; }
+
+      .image-popup {
+        cursor: -webkit-zoom-in;
+        cursor: -moz-zoom-in;
+        cursor: zoom-in; }
     </style>
 </head>
 <body class="goto-here">
     @include('users.layout.header')
-    <!-- TODO: truyen bien title vao dong nay -->
-    <!-- <h1 class="header-title text-center">事業内容・ビジネス商品</h1> -->
     <div class="container">
       @yield('content')
     </div>

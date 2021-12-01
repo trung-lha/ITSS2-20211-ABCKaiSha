@@ -4,7 +4,7 @@
             <div class="col-md-6 col-lg-3 ftco-animate">
                 <div class="product">
                     <a href="{{ route('product.detail', $product['id']) }}" class="img-prod"><img class="img-fluid" src="{{asset('/storage/images/'.$imageUrl[$key])}}" alt="{{$product['name']}}"
-                        style="min-height: 200px; min-width: 250px; object-fit: cover;"
+                        style="height: 200px; width: 250px; object-fit: cover;"
                     >
                         <!-- <span class="status">NEW</span>
                         <div class="overlay"></div> -->
