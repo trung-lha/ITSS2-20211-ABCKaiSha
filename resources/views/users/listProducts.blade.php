@@ -1,20 +1,26 @@
-<div class="productList row">
+<div class="row productList">
     @if (empty($productList) == false)
         @foreach($productList as $key => $product)
-            <div class="col-md-3 mb-3">
-                <div class="card text-center" style="width: auto">
-                    <img src="{{asset('/storage/images/'.$imageUrl[$key])}}" alt="{{$product['name']}}" class="card-img-top" style="object-fit: cover;">
-                    <div class="card-body">
-                        <div class="card-title">{{$product['name']}}
-                            <span class="tooltiptext">{{$product['name']}}</span>
-                        </div>
-                        <a href="{{ route('product.detail', $product['id']) }}" class="btn btn-warning small-text"><small>もっと見る</small></a>
+            <div class="col-md-6 col-lg-3 ftco-animate">
+                <div class="product">
+                    <a href="{{ route('product.detail', $product['id']) }}" class="img-prod"><img class="img-fluid" src="{{asset('/storage/images/'.$imageUrl[$key])}}" alt="{{$product['name']}}"
+                        style="min-height: 200px; min-width: 250px; object-fit: cover;"
+                    >
+                        <!-- <span class="status">NEW</span>
+                        <div class="overlay"></div> -->
+                    </a>
+                    <div class="text py-3 pb-4 px-3 text-center">
+                        <h3><a href="{{ route('product.detail', $product['id']) }}">{{$product['name']}}</a></h3>
                     </div>
                 </div>
             </div>
         @endforeach
     @endif
 </div>
-<div class="productList-pagination text-center mt-3">
-    {{ $productList->links() }}
+<div class="productList-pagination row mt-3">
+    <div class="col">
+        <div class="block-27 text-center">
+            {{ $productList->links() }}
+        </div>
+    </div>
 </div>

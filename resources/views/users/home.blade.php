@@ -1,27 +1,22 @@
 @extends('users.layout.index')
 @section('content')
+<section class="ftco-section">
     @include('users.layout.slider')
-    <div class="row mt-4 mb-2">
-        <div class="col">
-            <ul class="nav nav-tabs home-tabs">
-                <li class=home-tabs-empty></li>
-                <li class="nav-item home-tabs-item">
-                    <a class="nav-link active group" data-id="4" id="all-product">すべて</a>
-                </li>
-                @foreach ($categories as $item)
-                    <li class="nav-item home-tabs-item item">
-                        <a class="nav-link group " data-id="{{ $item->id }}">{{$item->name}}</a>
-                    </li>
-                @endforeach
-                <li class=home-tabs-empty></li>
-            </ul>
+    <div class="container mt-5" id="homeRef">
+        <div class="row justify-content-center">
+            <div class="col-md-10 mb-5 text-center">
+                <ul class="product-category">
+                    @foreach ($categories as $item)
+                        <li><a href="" data-id="{{ $item->id }}" class="category {{ $item->id === 1 ? 'active' : ''}}">{{$item->name}}</a></li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
-    </div>
-    <div class="row text-center">
-        <div class="col" id="list-productItems">
+        <div id="list-productItems">
             @include('users.listProducts', ['productList' => $products])
         </div>
     </div>
+</section>
 
 <script type="text/javascript">
     $(document).ready(function (){
@@ -32,8 +27,8 @@
                 $('#list-productItems').html(data);
             },
         });
-        $(".group").on('click', function() {
-            $('.group').removeClass("active");
+        $(".category").on('click', function() {
+            $('.category').removeClass("active");
             var id = $(this).data('id');
             $(this).addClass("active");
             $.ajax({
@@ -51,6 +46,7 @@
             var page = link.split("?page=")[1];
             // alert(categoryId, page);
             getMoreProduct(categoryId, page);
+            // TODO: Scroll to #homeRef
         });
 
         function getMoreProduct(categoryId, page){
