@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RecruitmentController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -16,15 +17,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
-
-Route::prefix('home')->group(function () {
-    // url/home/category/{id}
-    Route::get('/category/{id}', [CategoryController::class, 'show']);
-});
 
 Route::get('/admin/login', [AuthController::class, 'get'])->name('admin.login');
 Route::post('/admin/login', [AuthController::class, 'post'])->name('admin.login.post');
@@ -45,8 +37,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 });
 
-Route::prefix('user')->group(function () {
-    Route::get('detail/{productId}', [ProductController::class, 'detailProduct'])->name('product.detail');
-    Route::get('/home',[ProductController::class, 'listProductsAndCategories'])->name('user.home');
-    Route::get('/home/{categoryId}', [ProductController::class, 'groupProduct'])->name('groupProduct');
-});
+Route::get('/recruit', [RecruitmentController::class, 'index'])->name('recruitment.list');
+Route::get('product/detail/{productId}', [ProductController::class, 'detailProduct'])->name('product.detail');
+Route::get('/home',[ProductController::class, 'listProductsAndCategories'])->name('user.home');
+Route::get('/home/{categoryId}', [ProductController::class, 'groupProduct'])->name('groupProduct');

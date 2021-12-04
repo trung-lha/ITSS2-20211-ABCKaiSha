@@ -29,7 +29,8 @@ class ProductController extends Controller
 
     public function listProductsAndCategories()
     {
-        $products = Product::orderBy('id', 'desc')->paginate(8);
+        $products = Product::where('category_id', 1)
+            ->orderBy('id', 'desc')->paginate(8);
         $categories = Category::get();
         $imageUrl = [];
         foreach ($products as $key => $product) {
@@ -43,7 +44,7 @@ class ProductController extends Controller
     public function detailProduct(Request $request)
     {
         $product = Product::find($request->productId);
-        // TODO: sua anh 
+        // TODO: sua anh
         $image = $product->images->all();
         $urlImage = $image[0]->url;
 
@@ -52,11 +53,7 @@ class ProductController extends Controller
 
     public function groupProduct(Request $request)
     {
-        if($request->categoryId == 4){
-            $productList = Product::orderBy('id', 'desc')->paginate(8);
-        } else {
-            $productList = Product::where('category_id', $request->categoryId)->paginate(8);
-        }
+        $productList = Product::where('category_id', $request->categoryId)->orderBy('id', 'desc')->paginate(8);
         $imageUrl = [];
         foreach ($productList as $key => $product) {
             $img = $product->images->all();
