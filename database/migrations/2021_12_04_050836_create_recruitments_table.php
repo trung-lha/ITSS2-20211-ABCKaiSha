@@ -17,6 +17,8 @@ class CreateRecruitmentsTable extends Migration
             $table->integerIncrements('id');
             $table->string('name');
             $table->text('description');
+            $table->string('location', 100);
+            $table->double('salary');
             $table->timestamps();
         });
     }

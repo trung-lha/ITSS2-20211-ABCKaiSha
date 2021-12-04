@@ -16,6 +16,8 @@ class RecruitmentFactory extends Factory
         return [
             'name' => $this->faker->name,
             'description' => $this->faker->text(200),
+            'location' => $this->faker->city(),
+            'salary' => $this->faker->randomFloat($nbMaxDecimals = 1, $min = 10, $max = 50),
         ];
     }
 }
