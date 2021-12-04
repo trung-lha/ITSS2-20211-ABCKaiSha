@@ -46,7 +46,7 @@
       background: #82ae46 !important;
       position: relative;
       top: 0;
-      padding: 10px 15px; 
+      padding: 10px 15px;
     }
     .bg-green {
       background: #ffffff !important;
@@ -503,7 +503,7 @@
         0% {
           margin-top: 20px;
           opacity: 0; } }
-      
+
       /* Detail Page */
       .detail .image {
         padding: 0;}
@@ -519,7 +519,7 @@
     </style>
 </head>
 <body class="goto-here">
-    @include('users.layout.header')
+    @yield('header')
     <div class="container">
       @yield('content')
     </div>
@@ -536,19 +536,19 @@
 
             if (st > 150) {
               if ( !navbar.hasClass('scrolled') ) {
-                navbar.addClass('scrolled');	
+                navbar.addClass('scrolled');
               }
-            } 
+            }
             if (st < 150) {
               if ( navbar.hasClass('scrolled') ) {
                 navbar.removeClass('scrolled sleep');
               }
-            } 
+            }
             if ( st > 350 ) {
               if ( !navbar.hasClass('awake') ) {
-                navbar.addClass('awake');	
+                navbar.addClass('awake');
               }
-              
+
               if(sd.length > 0) {
                 sd.addClass('sleep');
               }
@@ -568,13 +568,13 @@
 
         var goHere = function() {
           $('.mouse-icon').on('click', function(event){
-            
+
             event.preventDefault();
 
             $('html,body').animate({
               scrollTop: $('.goto-here').offset().top
             }, 500);
-            
+
             return false;
           });
         };
