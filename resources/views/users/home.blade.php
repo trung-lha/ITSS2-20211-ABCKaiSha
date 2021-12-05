@@ -5,22 +5,20 @@
 @section('content')
 <section class="ftco-section">
     @include('users.layout.slider')
-    <div class="container mt-5">
-        <div class="row justify-content-center mb-3 pb-3">
-            <div class="col-md-12 heading-section text-center">
-                <h2 class="mb-4">商品</h2>
-                <div id="description-group">水分が多い草本性で食用となる植物を指す。主に葉や根、茎（地下茎を含む）、花・つぼみ・果実を副食として食べるものをいう</div>
-            </div>
-        </div>
-    </div>
     <div class="container mt-5" id="homeRef">
         <div class="row justify-content-center">
-            <div class="col-md-10 mb-5 text-center">
+            <div class="col-md-10 text-center">
                 <ul class="product-category">
                     @foreach ($categories as $item)
                         <li><a href="" data-id="{{ $item->id }}" class="category {{ $item->id === 1 ? 'active' : ''}}">{{$item->name}}</a></li>
                     @endforeach
                 </ul>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section">
+                <h5 class="mb-4">タイトル</h5>
+                <div id="description-group">水分が多い草本性で食用となる植物を指す。主に葉や根、茎（地下茎を含む）、花・つぼみ・果実を副食として食べるものをいう</div>
             </div>
         </div>
         <div id="list-productItems">
