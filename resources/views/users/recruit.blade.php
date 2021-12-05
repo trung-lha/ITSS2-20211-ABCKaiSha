@@ -7,27 +7,31 @@
         <div class="container">
             @if (!empty($recruiments))
                 @foreach ($recruiments as $key => $item)
-                <div class="row">
-                    <div class="col-md-8">
+                <div class="row mb-4" style="border-radius: 20px; border: lightgray solid 2px; padding-top: 40px">
+                    <div class="col-md-12">
                         <div class="blog-entry align-self-stretch d-md-flex">
                             <a href="" class="block-20"><img src="{{ asset("/images/recruit". ($key+1) . ".jpeg") }}" alt="re1" style="height: 200px; width: 200px"></a>
                             <div class="text d-block pl-md-4">
-                                <div class="meta mb-3">
-                                    <div>
+                                <div class="row mb-5">
+                                    <div class="col-12">
+                                        <h3 class="heading"><a href="#">{{$item->name}}</a></h3>
+                                        <p>{{$item->description}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;{{ $item->location }}
+                                    </div>
+                                    <div class="col-2">
+                                        <i class="fa-solid fa-dollar-sign"></i>&nbsp;&nbsp;{{ $item->salary }}&nbsp;万円
+                                    </div>
+                                    <div class="col-4">
                                         <i class="fa-solid fa-calendar-days"></i>
                                         {{ $item->created_at->isoFormat('dddd D/MM/YYYY') }}
                                     </div>
-                                </div>
-                                <h3 class="heading"><a href="#">{{$item->name}}</a></h3>
-                                <p>{{$item->description}}</p>
-                                <div>
-                                    <span>
-                                        <i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;{{ $item->location }}
-                                    </span>
-                                    <span class="ml-5">
-                                        <i class="fa-solid fa-dollar-sign"></i>&nbsp;&nbsp;{{ $item->salary }}&nbsp;万円
-                                    </span>
-                                    <span><a href=" {{route('recruitment.detail', $key+1)}} "class="btn btn-success btn-sm" style="float: right">もっと見る</a></span>
+                                    <div class="col-2">
+                                        <a href=" {{route('recruitment.detail', $key+1)}} "class="btn btn-success btn-sm" style="float: right">もっと見る</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
