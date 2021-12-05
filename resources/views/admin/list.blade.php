@@ -68,7 +68,7 @@
             <th style = "width: 60px" >{{$product['id']}}</th>
             <td class="td-start">{{$product['name']}}</td>
             <td style="text-align: center; width: 200px; height: 130px">
-                <img src="{{asset('/storage/images/'.$product['image'])}}" alt="{{$product['name']}}" class="img-thumbnail" style = " width:200px; height:130px" >
+                <img src="{{$product['image']}}" alt="{{$product['name']}}" class="img-thumbnail" style = " width:200px; height:130px" >
             </td>
             <td>{{$product['description']}}</td>
             <td style="text-align: start; width: 140px;">

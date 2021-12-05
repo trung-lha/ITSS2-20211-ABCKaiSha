@@ -26,14 +26,18 @@ class UpdateProductRequest extends FormRequest
         return [
             'name' => ['required', 'max:255'],
             'description' => ['required'],
+            'images.*' => ['image', 'mimes:jpg,png,jpeg,gif,svg', 'max:4096'],
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => "製品名が空でない。",
-            'description.required' => '説明が空ではない。',
+            'name.required' => "製品名を入力してください",
+            'description.required' => '説明を入力してください',
+            'images.*.mimes' => 'イメージはjpg,png,jpeg,gif,svgです。',
+            'images.*.max' => 'イメージのサイズは2048を超えてはなりません。',
+            'images.*.image' => '画像である必要があります。'
         ];
     }
 }

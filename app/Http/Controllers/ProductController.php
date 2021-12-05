@@ -8,7 +8,6 @@ use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -37,7 +36,7 @@ class ProductController extends Controller
             $products[$key] = $product->format();
             $img = $product->images->all();
             $url = $img[0]->url;
-             array_push($imageUrl, $url);
+            array_push($imageUrl, $url);
         }
         return view('users.home', compact('products', 'categories', 'imageUrl'));
     }
@@ -58,7 +57,7 @@ class ProductController extends Controller
         foreach ($productList as $key => $product) {
             $img = $product->images->all();
             $url = $img[0]->url;
-             array_push($imageUrl, $url);
+            array_push($imageUrl, $url);
         }
         return view('users.listProducts', compact('productList', 'imageUrl'))->render();
     }
@@ -70,7 +69,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.create', ['categories'=>$categories]);
+        return view('admin.create', ['categories' => $categories]);
     }
 
     /**
@@ -88,35 +87,17 @@ class ProductController extends Controller
         ])->id;
 
         if ($request->hasFile('images')) {
-            foreach($request->file('images') as $image) {
-                $paths = explode("/", $image->store('/images'));
+            foreach ($request->file('images') as $image) {
+                $files = $this->save_record_image($image);
 
                 Image::create([
-                    'url' => $paths[1],
+                    'url' => $files['data']['url'],
                     'product_id' => $id
                 ]);
             }
         }
 
         return redirect()->route('admin.index')->with(['message' => '成功した新しい作成']);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $product = Product::find($id);
-        $images = $product->images()->get();
-
-        // Tra ve view cua trang homepage san pham
-        return view('', [
-            'product'=>$product,
-            'images'=>$images,
-        ]);
     }
 
     /**
@@ -132,9 +113,9 @@ class ProductController extends Controller
         $categories = Category::all();
 
         return view('admin.edit', [
-            'product'=>$product,
-            'images'=>$images,
-            'categories'=>$categories
+            'product' => $product,
+            'images' => $images,
+            'categories' => $categories
         ]);
     }
 
@@ -157,21 +138,20 @@ class ProductController extends Controller
         if ($request->hasFile('images')) {
             $images = Product::find($id)->images()->get();
 
-            foreach($images as $image) {
-                Storage::delete('/images/'.$image->url);
+            foreach ($images as $image) {
                 Image::find($image->id)->delete();
             }
 
-            foreach($request->file('images') as $image) {
-                $paths = explode("/", $image->store('/images'));
+            foreach ($request->file('images') as $image) {
+                $files = $this->save_record_image($image);
 
                 Image::create([
-                    'url' => $paths[1],
+                    'url' => $files['data']['url'],
                     'product_id' => $id
                 ]);
             }
         }
-        return redirect()->route('admin.index')->with(['message'=>'更新の成功']);
+        return redirect()->route('admin.index')->with(['message' => '更新の成功']);
     }
 
     /**
@@ -182,13 +162,33 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $images = Product::find($id)->images()->get();
-
-        foreach($images as $image) {
-            Storage::delete('/images/'.$image->url);
-        }
         Product::destroy($id);
 
         return redirect()->back()->with(['message' => '削除に成功']);
+    }
+
+    /**
+     * Ham phu upload anh
+     */
+
+    private function save_record_image($image, $name = null)
+    {
+        $API_KEY = '15672aae60910740d9ba45de64e8986d';
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=' . $API_KEY);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
+        $extension = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
+        $file_name = ($name) ? $name . '.' . $extension : $image->getClientOriginalName();
+        $data = array('image' => base64_encode(file_get_contents($image)), 'name' => $file_name);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        $result = curl_exec($ch);
+        if (curl_errno($ch)) {
+            return 'Error:' . curl_error($ch);
+        } else {
+            return json_decode($result, true);
+        }
+        curl_close($ch);
     }
 }

@@ -16,10 +16,10 @@ class ProductSeeder extends Seeder
     public function run()
     {
         Product::factory()
-                ->count(30)
-                ->create()
-                ->each(function ($product) {
-                    $product->images()->saveMany(Image::factory()->count(3)->make());
-                });
+            ->count(30)
+            ->create()
+            ->each(function ($product) {
+                $product->images()->saveMany(Image::factory()->count(3)->make());
+            });
     }
 }
