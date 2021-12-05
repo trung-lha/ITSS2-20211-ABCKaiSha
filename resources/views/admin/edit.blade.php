@@ -52,7 +52,7 @@
             <div class="form-group d-flex">
                 @if(empty($images) == false)
                     @foreach($images as $image)
-                        <img src="{{asset('/storage/images/'.$image->url)}}" alt="{{$product->name}}" srcset="" width="50" height="50" class="mr-1">
+                        <img src="{{$image->url}}" alt="{{$product->name}}" srcset="" width="50" height="50" class="mr-1">
                     @endforeach
                 @endif
             </div>

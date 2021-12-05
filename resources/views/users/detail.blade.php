@@ -9,7 +9,7 @@
     <div class="detail container mt-5">
         <div class="row">
             <div class="col-lg-5 image">
-                <a href="{{asset('/storage/images/'.$urlImage)}}" class="image-popup"><img src="{{asset('/storage/images/'.$urlImage)}}" class="img-fluid"></a>
+                <a href="{{$urlImage}}" class="image-popup"><img src="{{$urlImage}}" class="img-fluid"></a>
             </div>
             <div class="col-lg-7 product-details pl-md-5">
                 <h3>{{$product["name"]}}</h3>
@@ -23,9 +23,9 @@
                     @if(empty($images) == false)
                         @foreach($images as $image)
                         <div class="col-md-6 col-lg-3" style="padding: 0 2rem 0 0;">
-                            <div class="product" style="">
-                                <a href="{{asset('/storage/images/'.$image->url)}}" class="img-prod image-popup">
-                                    <img class="img-fluid" src="{{asset('/storage/images/'.$image->url)}}" alt="{{$product->name}}"
+                            <div class="product">
+                                <a href="{{$image->url}}" class="img-prod image-popup">
+                                    <img class="img-fluid" src="{{$image->url}}" alt="{{$product->name}}"
                                     style="height: 150px; width: 100%; object-fit: cover;">
                                 </a>
                             </div>

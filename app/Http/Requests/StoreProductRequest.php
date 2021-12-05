@@ -38,7 +38,7 @@ class StoreProductRequest extends FormRequest
             'description.required' => '説明を入力してください',
             'images.required' => 'イメージをアップロードしてきださい',
             'images.*.mimes' => '画像拡張子は「jpg, png, jpeg, gif, svg」が必要です',
-            'images.*.max' => 'イメージのサイズは2048超えできません',
+            'images.*.max' => 'イメージのサイズは4096超えできません',
             'images.*.image' => 'イメージ以外はアップロードができません'
         ];
     }
