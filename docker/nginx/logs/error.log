@@ -137,13 +137,13 @@
 2021/12/04 04:04:06 [notice] 1#1: start worker process 33
 2021/12/04 04:04:06 [notice] 1#1: start worker process 34
 2021/12/04 04:04:06 [notice] 1#1: start worker process 35
-2021/12/05 08:45:39 [notice] 1#1: using the "epoll" event method
-2021/12/05 08:45:39 [notice] 1#1: nginx/1.21.4
-2021/12/05 08:45:39 [notice] 1#1: built by gcc 10.3.1 20210424 (Alpine 10.3.1_git20210424) 
-2021/12/05 08:45:39 [notice] 1#1: OS: Linux 5.10.47-linuxkit
-2021/12/05 08:45:39 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
-2021/12/05 08:45:39 [notice] 1#1: start worker processes
-2021/12/05 08:45:39 [notice] 1#1: start worker process 33
-2021/12/05 08:45:39 [notice] 1#1: start worker process 34
-2021/12/05 09:13:49 [warn] 34#34: *63 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000001, client: 172.23.0.1, server: , request: "POST /admin/products HTTP/1.1", host: "localhost:8000", referrer: "http://localhost:8000/admin/products/create"
-2021/12/05 09:49:01 [warn] 33#33: *96 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000002, client: 172.23.0.1, server: , request: "POST /admin/products HTTP/1.1", host: "localhost:8000", referrer: "http://localhost:8000/admin/products/create"
+2021/12/05 13:49:23 [notice] 1#1: using the "epoll" event method
+2021/12/05 13:49:23 [notice] 1#1: nginx/1.21.4
+2021/12/05 13:49:23 [notice] 1#1: built by gcc 10.3.1 20210424 (Alpine 10.3.1_git20210424) 
+2021/12/05 13:49:23 [notice] 1#1: OS: Linux 5.10.47-linuxkit
+2021/12/05 13:49:23 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/12/05 13:49:23 [notice] 1#1: start worker processes
+2021/12/05 13:49:23 [notice] 1#1: start worker process 31
+2021/12/05 13:49:23 [notice] 1#1: start worker process 32
+2021/12/05 13:49:38 [error] 31#31: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.18.0.1, server: , request: "GET /circle/ HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost:8000"
+2021/12/05 13:49:49 [error] 32#32: *6 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.18.0.1, server: , request: "GET /circle/http:/localhost:3000/accounts/sign_up/http:/localhost:3000/accounts/sign_up/ HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost:8000", referrer: "http://localhost:8000/circle/http:/localhost:3000/accounts/sign_up/http:/localhost:3000/accounts/sign_up/"

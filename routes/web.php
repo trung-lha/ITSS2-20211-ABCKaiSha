@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RecruitmentController;
+use App\Http\Controllers\ShipperController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 });
 
+Route::get('/detail/register/check', [ShipperController::class, 'register'])->name('user.register');
 Route::get('/recruit', [RecruitmentController::class, 'index'])->name('recruitment.list');
 Route::get('/recruit/detail/{recruitID}', [RecruitmentController::class, 'detail'])->name('recruitment.detail');
 Route::get('/recruit/detail/register/{recruitID}', [RecruitmentController::class, 'register'])->name('recruitment.register');
