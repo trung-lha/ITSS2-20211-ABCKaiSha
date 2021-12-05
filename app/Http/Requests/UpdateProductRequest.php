@@ -36,7 +36,7 @@ class UpdateProductRequest extends FormRequest
             'name.required' => "製品名を入力してください",
             'description.required' => '説明を入力してください',
             'images.*.mimes' => 'イメージはjpg,png,jpeg,gif,svgです。',
-            'images.*.max' => 'イメージのサイズは2048を超えてはなりません。',
+            'images.*.max' => 'イメージのサイズは4096を超えてはなりません。',
             'images.*.image' => '画像である必要があります。'
         ];
     }
