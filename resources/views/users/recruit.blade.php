@@ -27,7 +27,7 @@
                                     <span class="ml-5">
                                         <i class="fa-solid fa-dollar-sign"></i>&nbsp;&nbsp;{{ $item->salary }}&nbsp;万円
                                     </span>
-                                    <span><a href="" class="btn btn-success btn-sm" style="float: right">もっと見る</a></span>
+                                    <span><a href=" {{route('recruitment.detail', $key+1)}} "class="btn btn-success btn-sm" style="float: right">もっと見る</a></span>
                                 </div>
                             </div>
                         </div>
