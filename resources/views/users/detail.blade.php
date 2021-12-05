@@ -1,4 +1,7 @@
 @extends('users.layout.index')
+@section('header')
+    @include('users.layout.header', ['title' => "事業内容・ビジネス商品", 'urlBg' => "/bg_1.jpg"])
+@endsection
 @section('content')
 <section class="ftco-section">
     @include('users.layout.slider')
