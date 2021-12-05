@@ -32,8 +32,8 @@ class UpdateProductRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => "製品名が空でない。",
-            'description.required' => '説明が空ではない。',
+            'name.required' => "製品名を入力してください",
+            'description.required' => '説明を入力してください。',
         ];
     }
 }

@@ -34,12 +34,12 @@ class StoreProductRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => "製品名が空でない。",
-            'description.required' => '説明が空ではない。',
-            'images.required' => 'イメージが空ではない。',
-            'images.*.mimes' => 'イメージはjpg,png,jpeg,gif,svgです。',
-            'images.*.max' => 'イメージのサイズは2048を超えてはなりません。',
-            'images.*.image' => '画像である必要があります。'
+            'name.required' => "製品名を入力してください",
+            'description.required' => '説明を入力してください',
+            'images.required' => 'イメージをアップロードしてきださい',
+            'images.*.mimes' => '画像拡張子は「jpg, png, jpeg, gif, svg」が必要です',
+            'images.*.max' => 'イメージのサイズは2048超えできません',
+            'images.*.image' => 'イメージ以外はアップロードができません'
         ];
     }
 }

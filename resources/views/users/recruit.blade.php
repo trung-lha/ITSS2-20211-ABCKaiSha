@@ -19,14 +19,16 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-3">
                                         <i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;{{ $item->location }}
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-3">
                                         <i class="fa-solid fa-dollar-sign"></i>&nbsp;&nbsp;{{ $item->salary }}&nbsp;万円
                                     </div>
+                                    
                                     <div class="col-4">
                                         <i class="fa-solid fa-calendar-days"></i>
+                                        &nbsp;
                                         {{ $item->created_at->isoFormat('dddd D/MM/YYYY') }}
                                     </div>
                                     <div class="col-2">

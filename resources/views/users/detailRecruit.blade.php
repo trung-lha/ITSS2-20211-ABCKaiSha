@@ -17,13 +17,13 @@
             <div class="detail container mt-5">
                 <div class="meta mb-3">
                         <span>
-                            <i class="fa-solid fa-calendar-days"></i>&nbsp;&nbsp; {{ $create_at }}&nbsp;&nbsp;&nbsp;&nbsp;
-                        </span>
-                        <span>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;{{ $location }}
+                        <i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;{{ $location }}
                         </span>
                         <span class="ml-5">
                             <i class="fa-solid fa-dollar-sign"></i>&nbsp;&nbsp;{{ $salary }}&nbsp;万円
+                        </span>
+                        <span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-calendar-days"></i>&nbsp;&nbsp; {{ $create_at }}
                         </span>
                 </div>
                 
