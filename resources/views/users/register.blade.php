@@ -17,13 +17,13 @@
             <div class="detail container mt-5">
                 <div class="" style="margin-top: -30px; margin-bottom: 50px">
                         <span>
-                            <i class="fa-solid fa-calendar-days"></i>&nbsp;&nbsp; {{ $create_at }}&nbsp;&nbsp;&nbsp;&nbsp;
-                        </span>
-                        <span>
                         &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;{{ $location }}
                         </span>
                         <span class="ml-5">
-                            <i class="fa-solid fa-dollar-sign"></i>&nbsp;&nbsp;{{ $salary }}&nbsp;万円
+                            <i class="fa-solid fa-dollar-sign"></i>&nbsp;&nbsp;{{ $salary }}&nbsp;万円&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span>
+                        <span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp<i class="fa-solid fa-calendar-days"></i>&nbsp;&nbsp; {{ $create_at }}
                         </span>
                 </div>
                 <div class="" style="border-style: solid; width: 60%; padding: 20px; margin-left: 20%;padding-left: 80px;padding-right: 80px;">
@@ -67,13 +67,22 @@
         });
         // console.log(dataForm[1]);
         if (check == 1) {
+            event.preventDefault();
             Swal.fire({
-                position: 'top-end',
+                title: 'ありがとうございます',
+                text: "登録フォームが保存しました",
                 icon: 'success',
-                title: 'Your work has been saved',
-                showConfirmButton: false,
-                timer: 1500,
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '採用情報ページへいきます',
+                cancelButtonText: 'キャンセル'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#my-form').submit();
+                }
             })
+
         }
     });
 </script>

@@ -17,7 +17,7 @@
         </div>
         <div class="row justify-content-center mb-3 pb-3">
             <div class="col-md-12 heading-section">
-                <h5 class="mb-4">タイトル</h5>
+                <h3 class="mb-4">タイトル</h3>
                 <div id="description-group">水分が多い草本性で食用となる植物を指す。主に葉や根、茎（地下茎を含む）、花・つぼみ・果実を副食として食べるものをいう</div>
             </div>
         </div>
