@@ -38,6 +38,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 });
 
 Route::get('/recruit', [RecruitmentController::class, 'index'])->name('recruitment.list');
+Route::get('/recruit/detail/{recruitID}', [RecruitmentController::class, 'detail'])->name('recruitment.detail');
+Route::get('/recruit/detail/register/{recruitID}', [RecruitmentController::class, 'register'])->name('recruitment.register');
 Route::get('product/detail/{productId}', [ProductController::class, 'detailProduct'])->name('product.detail');
 Route::get('/home',[ProductController::class, 'listProductsAndCategories'])->name('user.home');
 Route::get('/home/{categoryId}', [ProductController::class, 'groupProduct'])->name('groupProduct');
