@@ -36,7 +36,7 @@ class StoreProductRequest extends FormRequest
         return [
             'name.required' => "製品名を入力してください",
             'description.required' => '説明を入力してください',
-            'images.required' => 'イメージをアップロードしてきださい',
+            'images.required' => 'イメージをアップロードしてください',
             'images.*.mimes' => '画像拡張子は「jpg, png, jpeg, gif, svg」が必要です',
             'images.*.max' => 'イメージのサイズは4096超えできません',
             'images.*.image' => 'イメージ以外はアップロードができません'
