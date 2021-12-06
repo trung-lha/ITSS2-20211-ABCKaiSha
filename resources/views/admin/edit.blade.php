@@ -58,8 +58,8 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">説明</label>
-                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" required>
-                {{$product->description}}
+                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="6" cols="50" required>
+                {{trim($product->description)}}
                 </textarea>
             </div>
         </form>
@@ -69,6 +69,7 @@
     <button type="submit" class="btn btn-primary" onclick="onSubmitForm(`{{$product->id}}`)">更新</button>
 </div>
 <script type="text/javascript">
+    document.getElementById('exampleFormControlTextarea1').value = document.getElementById('exampleFormControlTextarea1').value.trim();
     function onSubmitForm(id) {
         var form = document.getElementById('form_edit');
         form.action = `{{url('/admin/products')}}/${id}`;
