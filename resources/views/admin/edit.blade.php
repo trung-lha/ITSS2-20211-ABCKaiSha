@@ -58,7 +58,7 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">説明</label>
-                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" required>
+                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="6" required>
                 {{$product->description}}
                 </textarea>
             </div>

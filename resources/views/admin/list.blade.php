@@ -2,33 +2,41 @@
 @extends('admin.index')
 @section('content')
 <style>
-    .mt-4{
-    background-color: #f2f5c5;
-    padding: 20px;
+    .mt-4 {
+        background-color: #f2f5c5;
+        padding: 20px;
     }
+
+    .th-config {
+        text-align: center;
+        vertical-align: revert;
+    }
+
     .table thead th {
         vertical-align: bottom;
         border-bottom: 1px solid #a55b5b;
     }
-    .table-bordered td, .table-bordered th {
-      border: 1px solid #a55b5b;
+
+    .table-bordered td,
+    .table-bordered th {
+        border: 1px solid #a55b5b;
     }
-    .modal-dialog{
+
+    .modal-dialog {
         margin-top: 150px;
     }
-    .modal-content{
+
+    .modal-content {
         text-align: center;
     }
-    .modal-footer{
+
+    .modal-footer {
         justify-content: space-between;
     }
-    </style>
+</style>
 <div class="font-weight-bold mb-3" style="font-size: xx-large; text-align: center">製品リスト</div>
 @if(Session::has('message'))
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true"
-    data-delay="7000" style="position: absolute; top: 1rem; right: 1rem; width: 200px;"
-
->
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="7000" style="position: absolute; top: 1rem; right: 1rem; width: 200px;">
     <div class="toast-header">
 
         <strong class="mr-auto">お知らせ</strong>
@@ -42,7 +50,7 @@
     </div>
 </div>
 @endif
-<div class="c-container d-flex justify-content-between" style = "float: right; padding-bottom: 20px; margin-top: 30px">
+<div class="c-container d-flex justify-content-between" style="float: right; padding-bottom: 20px; margin-top: 30px">
     <!-- <p style="font-size: x-large; font-weight: 500;">製品リスト</p> -->
     <a name="" id="" class="btn btn-primary" href="{{route('admin.create')}}" role="button">
         <i class="fas fa-plus-circle"></i>
@@ -54,23 +62,27 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th scope="col">番号</th>
-            <th scope="col">製品名</th>
-            <th scope="col">イメージ</th>
-            <th scope="col">説明</th>
-            <th scope="col">アクション</th>
+            <th scope="col" class="th-config" style="width: 5%">番号</th>
+            <th scope="col" class="th-config" style="width: 12.5%">製品名</th>
+            <th scope="col" class="th-config" style="width: 12.5%">カテゴリー</th>
+            <th scope="col" class="th-config">イメージ</th>
+            <th scope="col" class="th-config" style="width: 40%">説明</th>
+            <th scope="col" class="th-config" style="width: 14%">アクション</th>
         </tr>
     </thead>
     <tbody>
         @if (empty($products) == false)
         @foreach($products as $product)
         <tr>
-            <th style = "width: 60px" >{{$product['id']}}</th>
+            <th style="width: 60px">{{$product['id']}}</th>
             <td class="td-start">{{$product['name']}}</td>
+            <td class="td-start">{{$product['category_name']}}</td>
             <td style="text-align: center; width: 200px; height: 130px">
-                <img src="{{$product['image']}}" alt="{{$product['name']}}" class="img-thumbnail" style = " width:200px; height:130px" >
+                <img src="{{$product['image']}}" alt="{{$product['name']}}" class="img-thumbnail" style=" width:200px; height:130px">
             </td>
-            <td>{{$product['description']}}</td>
+            <td>
+                <p style="white-space: pre-wrap;text-align: justify;margin-top: 10px">{{$product["description"]}}</p>
+            </td>
             <td style="text-align: start; width: 140px;">
                 <a name="" id="" class="btn btn-primary" href="{{url('/admin/products')}}/{{$product['id']}}/edit" role="button"><i class="fal fa-pencil-alt"></i></a>
                 &nbsp;&nbsp;
@@ -104,7 +116,7 @@
                     この製品を削除しますか？
                 </form>
             </div>
-            <div class="modal-footer" >
+            <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
                 <button type="button" class="btn btn-primary" onclick="submitFormDelete()">削除</button>
             </div>
