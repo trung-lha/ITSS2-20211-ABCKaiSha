@@ -10,7 +10,7 @@
                 <div class="row mb-4" style="border-radius: 20px; border: lightgray solid 2px; padding-top: 40px">
                     <div class="col-md-12">
                         <div class="blog-entry align-self-stretch d-md-flex">
-                            <a href="" class="block-20"><img src="{{ asset("/images/recruit". ($key+1) . ".jpeg") }}" alt="re1" style="height: 200px; width: 200px"></a>
+                            <a href="" class=""><img src="{{ asset("/images/recruit". ($key+1) . ".png") }}" alt="re1" style="height: 200px; width: 200px"></a>
                             <div class="text d-block pl-md-4">
                                 <div class="row mb-5">
                                     <div class="col-12">
@@ -25,7 +25,7 @@
                                     <div class="col-3">
                                         <i class="fa-solid fa-dollar-sign"></i>&nbsp;&nbsp;{{ $item->salary }}&nbsp;万円
                                     </div>
-                                    
+
                                     <div class="col-4">
                                         <i class="fa-solid fa-calendar-days"></i>
                                         &nbsp;

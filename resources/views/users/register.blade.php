@@ -9,7 +9,9 @@
     }
     </style>
     <div style="text-align: center;font-size: 50px;margin-top: 20px;" >
-       配送ドライバー
+        @if(!empty($recruit))
+        {{ $recruit->name }}
+    @endif
     </div>
     <section class="ftco-section ftco-degree-bg" style = 'text-align: center; margin-top: -50px'>
         <div class="container" style = "border-style: solid; padding: 20px">
