@@ -8,9 +8,11 @@
         width: 10%;
     }
     </style>
-    <div style="text-align: center;font-size: 50px;margin-top: 20px;" >   
-       配送ドライバー
-    </div> 
+    <div style="text-align: center;font-size: 50px;margin-top: 20px;" >
+        @if(!empty($recruit))
+            {{ $recruit->name }}
+        @endif
+    </div>
     <section class="ftco-section ftco-degree-bg" style = 'text-align: center; margin-top: -50px'>
         <div class="container" style = "border-style: solid; padding: 20px">
         @if(!empty($recruit))
@@ -26,11 +28,11 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-calendar-days"></i>&nbsp;&nbsp; {{ $create_at }}
                         </span>
                 </div>
-                
+
                     <div class="image">
-                        <a href="" class="image-popup"><img src="{{ asset("/images/recruit$idImage.jpeg") }}"  class="img-fluid"></a>
+                        <a href="" class="image-popup"><img src="{{ asset("/images/recruit$idImage.png") }}"  class="img-fluid" style="height: 200px; width: 200px"></a>
                     </div>
-               
+
                 <div class="row other">
                     <div class="col-12">
                         <div class="row"><div class="col-12 title mb-3 mt-3 text-bold">{{$description}}</div></div>
@@ -38,7 +40,7 @@
                 </div>
                 <div>
                     <a href=" {{route('recruitment.register', $idImage)}}" class="btn btn-success btn-sm register"　style = "width: 20%">登録</a>
-                </div>                
+                </div>
             </div>
         @endif
         </div>
