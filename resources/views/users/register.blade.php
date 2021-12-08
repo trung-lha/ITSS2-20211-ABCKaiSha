@@ -37,6 +37,14 @@
                             <input type="text" class="form-control text-left px-3" placeholder="" name="name" required>
                         </div>
                         <div class="form-group">
+                            <label for="email" style="float: left">メールアドレス <span style="color: red">*</span></label>
+                            <input type="email" class="form-control text-left px-3" placeholder="" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" style="float: left">電話番号 <span style="color: red">*</span></label>
+                            <input type="text" class="form-control text-left px-3" placeholder="" name="phone" required>
+                        </div>
+                        <div class="form-group">
                             <label style="float: left">生年  <span style="color: red">*</span></label>
                             <input type="text" class="form-control text-left px-3" placeholder="" name="age" required>
                         </div>
