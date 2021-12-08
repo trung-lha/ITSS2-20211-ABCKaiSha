@@ -29,22 +29,23 @@
                         </span>
                 </div>
                 <div class="" style="border-style: solid; width: 60%; padding: 20px; margin-left: 20%;padding-left: 80px;padding-right: 80px;">
-    					<h1>登録</h1>
+                    <h1>登録</h1>
+                    <p class="text-left" style="diplay: block; color: red; font-size: 0.8rem;">＊は必須項目です。</p>
                     <form action="{{ route('user.register') }}" class="info" id="my-form">
                         <div class="form-group">
-                            <label for="" style="float: left">名前</label>
+                            <label for="" style="float: left">名前 <span style="color: red">*</span></label>
                             <input type="text" class="form-control text-left px-3" placeholder="" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label style="float: left">生年</label>
+                            <label style="float: left">生年  <span style="color: red">*</span></label>
                             <input type="text" class="form-control text-left px-3" placeholder="" name="age" required>
                         </div>
                         <div class="form-group">
-                            <label style="float: left">出身</label>
+                            <label style="float: left">出身  <span style="color: red">*</span></label>
                             <input type="text" class="form-control text-left px-3" placeholder="" name="address" required>
                         </div>
                         <div class="form-group">
-                            <label style="float: left">実務経験</label>
+                            <label style="float: left">実務経験  <span style="color: red">*</span></label>
                             <textarea  class="form-control text-left px-3" placeholder="" style="height: 150px" name="exp" required></textarea>
                         </div>
                         <div>

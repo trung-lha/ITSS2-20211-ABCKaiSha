@@ -17,7 +17,7 @@
         </div>
         <div class="row justify-content-center mb-3 pb-3">
             <div class="col-md-12 heading-section">
-                <h3 class="mb-4">タイトル</h3>
+                <h3 class="mb-4" id="category-title">{{$categories[0] -> name}}</h3>
                 <div id="description-group">水分が多い草本性で食用となる植物を指す。主に葉や根、茎（地下茎を含む）、花・つぼみ・果実を副食として食べるものをいう</div>
             </div>
         </div>
@@ -35,15 +35,19 @@
             var id = $(this).data('id');
             switch (id) {
                 case 1:
+                    $('#category-title').html('{{$categories[0] -> name}}');
                     $('#description-group').html("水分が多い草本性で食用となる植物を指す。主に葉や根、茎（地下茎を含む）、花・つぼみ・果実を副食として食べるものをいう");
                     break;
                 case 2:
+                    $('#category-title').html('{{$categories[1] -> name}}');
                     $('#description-group').html("塊茎かいけい 植物の地下茎が枝分れし、その先のほうが著しく肥大して塊状となったもの。 ジャガイモ、キクイモなどのいもの部分がこれにあたる");
                     break;
                 case 3:
+                    $('#category-title').html('{{$categories[2] -> name}}');
                     $('#description-group').html("飲食物に香気や辛味を添えて風味を増す種子・果実・葉・根・木皮・花など。");
                     break;
                 default:
+                    $('#category-title').html('{{$categories[0] -> name}}');
                     $('#description-group').html("水分が多い草本性で食用となる植物を指す。主に葉や根、茎（地下茎を含む）、花・つぼみ・果実を副食として食べるものをいう");
                     break;
             }
