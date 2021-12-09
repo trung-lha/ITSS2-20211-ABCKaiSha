@@ -35,6 +35,13 @@ class RecruitmentController extends Controller
         $salary = $recruit->salary;
         // TODO: sua anh
 
-        return view('users.register', ['recruit' => $recruit, 'create_at' => $create_at, 'location' => $location, 'salary' => $salary]);
+        return view('users.register', [
+            'recruit' => $recruit, 
+            'create_at' => $create_at, 
+            'location' => $location, 
+            'salary' => $salary, 
+            'id' => $request->recruitID,
+            'name' => $recruit->name,
+        ]);
     }
 }

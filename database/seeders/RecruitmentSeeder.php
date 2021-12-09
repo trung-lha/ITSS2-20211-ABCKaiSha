@@ -39,7 +39,5 @@ class RecruitmentSeeder extends Seeder
                 'salary' => 20,
             ]
         );
-
-        // DB::table('recruitments')->insert($data);
     }
 }
