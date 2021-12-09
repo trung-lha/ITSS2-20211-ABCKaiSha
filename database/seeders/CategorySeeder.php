@@ -14,7 +14,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        $categories = [['Group 1'], ['Group 2'], ['Group 3']];
+        $categories = [['野菜'], ['果物'], ['お米']];
 
         foreach($categories as $category) {
             Database\Category::create([
