@@ -14,7 +14,7 @@
                             <div class="text d-block pl-md-4">
                                 <div class="row mb-5">
                                     <div class="col-12">
-                                        <h3 class="heading"><a href="#">{{$item->name}}</a></h3>
+                                        <h3 class="heading"><b><a href=" {{route('recruitment.detail', $key+1)}} ">{{$item->name}}</a></b></h3>
                                         <p>{{$item->description}}</p>
                                     </div>
                                 </div>
@@ -29,7 +29,7 @@
                                     <div class="col-4">
                                         <i class="fa-solid fa-calendar-days"></i>
                                         &nbsp;
-                                        {{ $item->created_at->isoFormat('dddd D/MM/YYYY') }}
+                                        {{ $item->created_at->isoFormat('YYYY/MM/D') }}
                                     </div>
                                     <div class="col-2">
                                         <a href=" {{route('recruitment.detail', $key+1)}} "class="btn btn-success btn-sm" style="float: right">もっと見る</a>
