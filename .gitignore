@@ -15,5 +15,5 @@ yarn-error.log
 /.vscode
 supervisord.log
 supervisord.pid
-/docker/nginx/log
-/docker/php/log
+/docker/nginx/logs
+/docker/php/logs
