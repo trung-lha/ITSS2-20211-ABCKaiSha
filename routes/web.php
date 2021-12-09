@@ -44,7 +44,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 });
 
-Route::get('/detail/register/check', [ShipperController::class, 'register'])->name('user.register');
+Route::post('/detail/register/check', [ShipperController::class, 'register'])->name('user.register');
 Route::get('/recruit', [RecruitmentController::class, 'index'])->name('recruitment.list');
 Route::get('/recruit/detail/{recruitID}', [RecruitmentController::class, 'detail'])->name('recruitment.detail');
 Route::get('/recruit/detail/register/{recruitID}', [RecruitmentController::class, 'register'])->name('recruitment.register');
