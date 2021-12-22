@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Recruitment extends Model
 {
     use HasFactory;
+
+    public $timestamps = true;
+    protected $fillable = ['name', 'description', 'location', 'salary', 'img', 'limitation'];
 }

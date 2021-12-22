@@ -7,12 +7,110 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    //
-    public function show($id)
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        $products = Category::find($id)->products;
-        foreach ($products as $product) {
-            dd($product);
+        $categories = Category::get();
+
+        return view('admin.list_category', ['categories' => $categories]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view("admin.create_category");
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $request->flash();
+        $request->validate([
+            'name' => 'required|unique:categories',
+            'description' => 'required'
+        ], [
+            'name.required' => 'カテゴリ名を入力してください',
+            'name.unique' => 'このカテゴリはすでに存在します',
+            'description.required' => 'カテゴリの説明を入力してください'
+        ]);
+
+        Category::create([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);
+
+        return redirect(route('category'))->with(['message' => 'カテゴリ作成の成功']);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $category = Category::find($id);
+
+        return view('admin.edit_category', ['category' => $category]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $request->flash();
+        $request->validate([
+            'name' => 'required|unique:categories',
+            'description' => 'required'
+        ], [
+            'name.required' => 'カテゴリ名を入力してください',
+            'name.unique' => 'このカテゴリはすでに存在します',
+            'description.required' => 'カテゴリの説明を入力してください'
+        ]);
+
+        $count = Category::where('id', $id)
+            ->update([
+                'name' => $request->name,
+                'description' => $request->description
+            ]);
+        
+        if ($count == 0) {
+            return redirect(route('category'))->with(['message' => 'カテゴリ情報を正常に失敗しました']);
         }
+        return redirect(route('category'))->with(['message' => 'カテゴリ情報を正常に更新する']);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $count = Category::destroy($id);
+        if ($count == 0) {
+            return redirect(route('category'))->with(['message' => 'カテゴリの削除に失敗しました']);
+        }
+        return redirect(route('category'))->with(['message' => 'カテゴリを正常に削除']);
     }
 }
