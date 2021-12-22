@@ -20,17 +20,19 @@
             <!-- Icon -->
             <div class="fadeIn first">
                 <!-- <img src="https://img.icons8.com/cute-clipart/64/000000/login-rounded-right.png" id="icon" alt="User Icon" width="70" height="70" /> -->
-                <img 
-                    src="https://img.icons8.com/external-bearicons-gradient-bearicons/64/000000/external-login-call-to-action-bearicons-gradient-bearicons-1.png"
-                    id="icon" alt="User Icon"
-                />
+                <img src="https://img.icons8.com/external-bearicons-gradient-bearicons/64/000000/external-login-call-to-action-bearicons-gradient-bearicons-1.png" id="icon" alt="User Icon" />
             </div>
 
             <!-- Login Form -->
             <form action="{{route('admin.login.post')}}" method="POST">
                 @csrf
-                <input type="email" id="login" class="fadeIn second" name="email" placeholder="メールアドレスを入力してください">
-                <input type="password" id="password" class="fadeIn third" name="password" placeholder="パスワードを入力してください">
+                @if(Session::has('message'))
+                <div class="alert alert-danger">
+                    {{ Session::get('message')}}
+                </div>
+                @endif
+                <input type="email" id="login" class="fadeIn second" name="email" placeholder="メールアドレスを入力してください" value="{{old('email')}}">
+                <input type="password" id="password" class="fadeIn third" name="password" placeholder="パスワードを入力してください" value="{{old('password')}}">
                 <input type="submit" class="fadeIn fourth" value="Log In">
             </form>
 

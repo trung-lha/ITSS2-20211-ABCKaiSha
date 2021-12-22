@@ -17,7 +17,7 @@
         </div>
         <div class="row justify-content-center mb-3 pb-3">
             <div class="col-md-12 heading-section">
-                <h3 class="mb-4" id="category-title">{{$categories[0] -> name}}</h3>
+                <h3 class="mb-4" id="category-title" style="text-align: center;">{{$categories[0] -> name}}</h3>
                 <div id="description-group">水分が多い草本性で食用となる植物を指す。主に葉や根、茎（地下茎を含む）、花・つぼみ・果実を副食として食べるものをいう</div>
             </div>
         </div>
@@ -63,15 +63,22 @@
         $(document).on('click', '.pagination a', function(event) {
             event.preventDefault();
             var link = $(this).attr('href').split("/")[4];
-            var categoryId = link.split("?", 1);
-            var page = link.split("?page=")[1];
+            var categoryId = 1;
+            var page;
+            if (link && link.includes('?')) {
+                categoryId = link.split("?", 1);
+                page = link.split("?page=")[1];
+            } else {
+                page = $(this).attr('href').split("?page=")[1];
+            }
+
             getMoreProduct(categoryId, page);
             $('html,body').animate({
               scrollTop: $('#homeRef').offset().top
             }, 500);
         });
 
-        function getMoreProduct(categoryId, page){
+        function getMoreProduct(categoryId = 1, page){
             $.ajax({
                 url: "home/"+ categoryId + "?page=" + page,
                 method: "GET",

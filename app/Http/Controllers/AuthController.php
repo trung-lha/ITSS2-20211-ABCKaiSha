@@ -15,6 +15,7 @@ class AuthController extends Controller
 
     public function post(Request $req)
     {
+        $req->flash();
         $credentials = $req->only('email', 'password');
         // dd($credentials);
         if (Auth::attempt($credentials)) {
@@ -22,7 +23,7 @@ class AuthController extends Controller
             return redirect()->route('admin.index');
         }
 
-        return redirect()->back();
+        return redirect()->back()->with(['message' => '正しいアカウントとパスワードを入力してください']);
     }
 
     public function logout(Request $request)
