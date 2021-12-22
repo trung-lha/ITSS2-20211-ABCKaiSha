@@ -13,6 +13,7 @@
 <div class="card" style="width: 35rem; ">
     <div class="card-body">
         <h5 class="card-title text-center mb-2"　 style="padding-bottom: 40px; padding-top: 10px; font-size: x-large">詳細情報</h5>
+        <p class="text-left" style="display: block; color: red; font-size: 0.8rem;">＊は必須項目です。</p>
         <form class="container" id="form_edit" enctype="multipart/form-data" method="POST">
             @csrf
             @method('PUT')
@@ -32,12 +33,12 @@
             </div>
             @endif
             <div class="form-group">
-                <label for="exampleFormControlInput1">製品名</label>
+                <label for="exampleFormControlInput1">製品名 <span style="color: red">*</span></label>
                 <input type="text" name="name" class="form-control" id="exampleFormControlInput1" required value="{{$product->name}}">
             </div>
             @if (empty($categories) == false)
             <div class="form-group">
-                <label for="exampleFormControlSelect1">カテゴリ</label>
+                <label for="exampleFormControlSelect1">カテゴリ <span style="color: red">*</span></label>
                 <select class="form-control" name="category_id" id="exampleFormControlSelect1" required>
                     @foreach ($categories as $category)
                         <option value="{{$category->id}}" {{($product->category_id == $category->id) ? 'selected' : ''}}>{{$category->name}}</option>
@@ -46,7 +47,7 @@
             </div>
             @endif
             <div class="form-group">
-                <label for="exampleFormControlSelect2">イメージ</label>
+                <label for="exampleFormControlSelect2">イメージ <span style="color: red">*</span></label>
                 <input type="file" name="images[]" class="form-control-file" id="exampleFormControlFile1" multiple>
             </div>
             <div class="form-group d-flex">
@@ -57,9 +58,9 @@
                 @endif
             </div>
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">説明</label>
-                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="6" required>
-                {{$product->description}}
+                <label for="exampleFormControlTextarea1">説明 <span style="color: red">*</span></label>
+                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="6" cols="50" required>
+                {{trim($product->description)}}
                 </textarea>
             </div>
         </form>
@@ -69,6 +70,7 @@
     <button type="submit" class="btn btn-primary" onclick="onSubmitForm(`{{$product->id}}`)">更新</button>
 </div>
 <script type="text/javascript">
+    document.getElementById('exampleFormControlTextarea1').value = document.getElementById('exampleFormControlTextarea1').value.trim();
     function onSubmitForm(id) {
         var form = document.getElementById('form_edit');
         form.action = `{{url('/admin/products')}}/${id}`;
