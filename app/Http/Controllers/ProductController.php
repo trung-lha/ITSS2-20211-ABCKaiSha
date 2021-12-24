@@ -18,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('id', 'desc')->paginate(10);
+        $products = Product::orderBy('id', 'desc')->get();
         foreach ($products as $key => $product) {
             $products[$key] = $product->format();
         }
@@ -69,7 +69,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.create', ['categories' => $categories]);
+        return view('admin.product_create', ['categories' => $categories]);
     }
 
     /**
@@ -112,7 +112,7 @@ class ProductController extends Controller
         $images = $product->images()->get();
         $categories = Category::all();
 
-        return view('admin.edit', [
+        return view('admin.product_edit', [
             'product' => $product,
             'images' => $images,
             'categories' => $categories
