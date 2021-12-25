@@ -46,12 +46,7 @@
                                 <td><p style="white-space: pre-wrap;text-align: justify;margin-top: 10px">{{$recruit['description']}}</p></td>
                                 <td>{{$recruit['location']}}</td>
                                 <td>{{$recruit['salary']}}万円</td>
-                                <td>
-                                <?php
-                                    $date = new DateTime($recruit['limitation']);
-                                    echo $date->format("Y/m/d");
-                                ?>
-                                </td>
+                                <td>{{date('Y-m-d', strtotime($recruit['limitation']))}}</td>
                                 <td style="text-align: center; width: 100px;">
                                     <a name="" id="" class="btn btn-warning" href="{{ route('recruit.edit', $recruit['id']) }}" role="button"><i class="fa fa-pencil-alt"></i></a>
                                     &nbsp;&nbsp;

@@ -4,17 +4,17 @@
   <div class="content-wrapper pt-3">
     <section class="content">
       <div class="container">
-      <div class="row">
+        <div class="row">
           <div class="col-12 ml-3 mb-5">
-            <button type="button" class="btn" style="border: solid 1px black"><a href="{{route('recruit')}}" style="color: black">一覧に戻る</a></button>
           </div>
-      </div>
+        </div>
         <div class="row">
           <div class="col-2"></div>
           <div class="col-8">
             <div class="card">
               <div class="card-header">
-                  <h3 class=" mt-2 text-center">詳細情報</h3>
+                  <a href="{{route('recruit')}}" class="float-right"><button type="button" class="btn btn-secondary"><i class="fa fa-arrow-left"></i>&nbsp;戻る</button></a>
+                  <h3 class=" mt-2 text-left">詳細情報</h3>
               </div>
               <div class="card-body">
                 <form action="{{route('recruit.update', $recruit->id)}}" method="post" enctype="multipart/form-data">
@@ -64,8 +64,8 @@
                         <label for="exampleFormControlTextarea1">要約情報 <span style="color: red">*</span></label>
                         <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" required>{{$recruit->description}}</textarea>
                     </div>
-                    <div class="text-right mt-4">
-                        <button type="submit" class="btn btn-primary" onclick="onSubmitForm(`{{$recruit->id}}`)">更新</button>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary">更新</button>
                     </div>
                 </form>
               </div>
@@ -79,12 +79,4 @@
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
   </aside>
-  <script type="text/javascript">
-      document.getElementById('exampleFormControlTextarea1').value = document.getElementById('exampleFormControlTextarea1').value.trim();
-      function onSubmitForm(id) {
-          var form = document.getElementById('form_edit');
-          form.action = `{{url('/admin/recruit')}}/${id}`;
-          form.submit();
-      }
-  </script>
 @endsection
