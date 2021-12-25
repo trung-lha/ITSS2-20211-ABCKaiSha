@@ -87,17 +87,17 @@ class RecruitmentController extends Controller
                 'description' => 'required'
             ],
             [
-                'name.required' => '名前を入力してください',
-                'salary.required' => '給与を入力してください',
-                'salary.numeric' => '給与は数字でなければなりません',
-                'salary.min' => '給与は1より大きくなければなりません',
+                'name.required' => '採用タイトルを入力してください',
+                'salary.required' => '給料を入力してください',
+                'salary.numeric' => '給料は数字でなければなりません',
+                'salary.min' => '給料は1より大きくなければなりません',
                 'location.required' => '場所を入力してください',
-                'limitation.required' => '制限を入力してください',
+                'limitation.required' => '採用開始日を入力してください',
                 'limitation.date' => 'Phải là kiểu date',
                 'img.required' => 'イメージをアップロードしてください',
                 'img.mimes' => '画像拡張子は「jpg, png, jpeg, gif, svg」が必要です',
                 'img.image' => 'イメージ以外はアップロードができません',
-                'description.required' => '説明を入力してください'
+                'description.required' => '要約情報を入力してください'
             ]
         );
 

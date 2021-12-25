@@ -46,7 +46,7 @@
                                 <td>
                                     <p style="white-space: pre-wrap;text-align: justify;margin-top: 10px">{{$product["description"]}}</p>
                                 </td>
-                                <td style="text-align: start; width: 140px;">
+                                <td style="text-align: center; width: 140px;">
                                     <a name="" id="" class="btn btn-warning" href="{{ route('admin.edit', $product['id']) }}" role="button"><i class="fa fa-pencil-alt"></i></a>
                                     &nbsp;&nbsp;
                                     <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-danger" onclick="showModalDelete(`{{$product['id']}}`)"><i class="fas fa-trash"></i></button>

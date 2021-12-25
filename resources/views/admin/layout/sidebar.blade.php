@@ -54,11 +54,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="../gallery.html" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                採用
-              </p>
+            <a href="{{route('recruit')}}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>採用情報</p>
             </a>
           </li>
 
