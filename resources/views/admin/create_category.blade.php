@@ -4,17 +4,13 @@
     <div class="content-wrapper pt-3">
       <section class="content">
         <div class="container">
-        <div class="row">
-            <div class="col-12 ml-3 mb-5">
-                <button type="button" class="btn" style="border: solid 1px black"><a href="{{route('category')}}" style="color: black">一覧に戻る</a></button>
-            </div>
-        </div>
           <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
               <div class="card">
                 <div class="card-header">
-                    <h3 class=" mt-2 text-center">カテゴリを新規追加</h3>
+                    <a href="{{route('category')}}" class="float-right"><button type="button" class="btn btn-secondary"><i class="fa fa-arrow-left"></i>&nbsp;戻る</button></a>
+                    <h3 class=" mt-2 text-left">カテゴリを新規追加</h3>
                 </div>
                 <div class="card-body">
                     <form class="container" id="form_create" enctype="multipart/form-data" method="POST" action="{{route('category.store')}}">
@@ -39,8 +35,12 @@
                             <label for="exampleFormControlInput1">カテゴリ名 <span style="color: red">*</span></label>
                             <input type="text" name="name" class="form-control" id="exampleFormControlInput1" required value="{{old('name')}}">
                         </div>
-                        <div class="text-right mt-4">
-                            <button type="submit" class="btn btn-primary" onclick="onSubmitForm()">追加</button>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">説明<span style="color: red">*</span></label>
+                            <textarea name="description" class="form-control" id="exampleFormControlInput2" required value=""></textarea>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-success">追加</button>
                         </div>
                     </form>
                 </div>
@@ -54,10 +54,4 @@
     <aside class="control-sidebar control-sidebar-dark">
       <!-- Control sidebar content goes here -->
     </aside>
-    <script type="text/javascript">
-        function onSubmitForm() {
-            var form = document.getElementById('form_create');
-            form.submit();
-        }
-    </script>
 @endsection
