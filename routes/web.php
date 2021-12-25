@@ -61,11 +61,11 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     // GET - index
     Route::get('/categories', [CategoryController::class, 'index'])->name('category');
     // GET - create
-    Route::get('/categories/create', [CategoryController::class, 'create']);
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('category.create');
     // POST - store
     Route::post('/categories', [CategoryController::class, 'store'])->name('category.store');
     // GET - edit
-    Route::get('/categories/{id}/edit', [CategoryController::class, 'edit']);
+    Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
     // PATCH
     Route::patch('/categories/{id}', [CategoryController::class, 'update'])->name('category.update');
     // DELETE - destroy

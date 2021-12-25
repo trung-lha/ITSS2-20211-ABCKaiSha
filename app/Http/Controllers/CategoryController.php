@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::get();
+        $categories = Category::orderBy('id', 'DESC')->get();
 
         return view('admin.list_category', ['categories' => $categories]);
     }
@@ -39,17 +39,14 @@ class CategoryController extends Controller
     {
         $request->flash();
         $request->validate([
-            'name' => 'required|unique:categories',
-            'description' => 'required'
+            'name' => 'required|unique:categories'
         ], [
             'name.required' => 'カテゴリ名を入力してください',
-            'name.unique' => 'このカテゴリはすでに存在します',
-            'description.required' => 'カテゴリの説明を入力してください'
+            'name.unique' => 'このカテゴリはすでに存在します'
         ]);
 
         Category::create([
-            'name' => $request->name,
-            'description' => $request->description
+            'name' => $request->name
         ]);
 
         return redirect(route('category'))->with(['message' => 'カテゴリ作成の成功']);
@@ -79,18 +76,15 @@ class CategoryController extends Controller
     {
         $request->flash();
         $request->validate([
-            'name' => 'required|unique:categories',
-            'description' => 'required'
+            'name' => 'required|unique:categories'
         ], [
             'name.required' => 'カテゴリ名を入力してください',
-            'name.unique' => 'このカテゴリはすでに存在します',
-            'description.required' => 'カテゴリの説明を入力してください'
+            'name.unique' => 'このカテゴリはすでに存在します'
         ]);
 
         $count = Category::where('id', $id)
             ->update([
-                'name' => $request->name,
-                'description' => $request->description
+                'name' => $request->name
             ]);
         
         if ($count == 0) {
