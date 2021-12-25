@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RecruitmentController;
 use App\Http\Controllers\ShipperController;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\Product;
 use App\Models\Recruitment;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,7 @@ Route::get('product/detail/{productId}', [ProductController::class, 'detailProdu
 Route::get('/home',[ProductController::class, 'listProductsAndCategories'])->name('user.home');
 Route::get('/home/{categoryId}', [ProductController::class, 'groupProduct'])->name('groupProduct');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'contact'])->name('contact.post');
 Route::get('/company-intro', [CompanyIntroController::class, 'index'])->name('intro');
 
 Route::get('/admin/login', [AuthController::class, 'get'])->name('admin.login');
