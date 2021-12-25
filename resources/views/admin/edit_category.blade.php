@@ -5,16 +5,12 @@
   <section class="content">
     <div class="container">
       <div class="row">
-        <div class="col-12 ml-3 mb-5">
-          <button type="button" class="btn" style="border: solid 1px black"><a href="{{route('category')}}" style="color: black">一覧に戻る</a></button>
-        </div>
-      </div>
-      <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
           <div class="card">
             <div class="card-header">
-              <h3 class=" mt-2 text-center">詳細情報</h3>
+              <a href="{{route('category')}}" class="float-right"><button type="button" class="btn btn-secondary"><i class="fa fa-arrow-left"></i>&nbsp;戻る</button></a>
+              <h3 class=" mt-2 text-left">詳細情報</h3>
             </div>
             <div class="card-body">
               <form class="container" id="form_edit" enctype="multipart/form-data" method="POST">
@@ -46,7 +42,7 @@
                   {{trim($category->description)}}
                   </textarea>
                 </div>
-                <div class="text-right mt-4">
+                <div class="text-center mt-4">
                   <button type="submit" class="btn btn-primary" onclick="onSubmitForm(`{{$category->id}}`)">更新</button>
                 </div>
               </form>

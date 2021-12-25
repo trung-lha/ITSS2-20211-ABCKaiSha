@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CompanyIntroController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RecruitmentController;
 use App\Http\Controllers\ShipperController;
@@ -33,7 +35,8 @@ Route::get('/recruit/detail/register/{recruitID}', [RecruitmentController::class
 Route::get('product/detail/{productId}', [ProductController::class, 'detailProduct'])->name('product.detail');
 Route::get('/home',[ProductController::class, 'listProductsAndCategories'])->name('user.home');
 Route::get('/home/{categoryId}', [ProductController::class, 'groupProduct'])->name('groupProduct');
-
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/company-intro', [CompanyIntroController::class, 'index'])->name('intro');
 
 Route::get('/admin/login', [AuthController::class, 'get'])->name('admin.login');
 Route::post('/admin/login', [AuthController::class, 'post'])->name('admin.login.post');

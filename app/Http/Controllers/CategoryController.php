@@ -38,15 +38,20 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->flash();
-        $request->validate([
-            'name' => 'required|unique:categories'
-        ], [
-            'name.required' => 'カテゴリ名を入力してください',
-            'name.unique' => 'このカテゴリはすでに存在します'
-        ]);
+        $request->validate(
+            [
+                'name' => 'required|unique:categories',
+                'description' => 'required'
+            ],
+            [
+                'name.required' => 'カテゴリ名を入力してください',
+                'name.unique' => 'このカテゴリはすでに存在します'
+            ]
+        );
 
         Category::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'description' => $request->description
         ]);
 
         return redirect(route('category'))->with(['message' => 'カテゴリ作成の成功']);
@@ -75,7 +80,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $request->flash();
-        
+
         $category = Category::where('name', $request->name)->get();
         $count = count($category);
 
@@ -93,7 +98,7 @@ class CategoryController extends Controller
                 'name' => $request->name,
                 'description' => $request->description
             ]);
-        
+
         if ($count == 0) {
             return redirect(route('category'))->with(['message' => 'カテゴリ情報を正常に失敗しました']);
         }
