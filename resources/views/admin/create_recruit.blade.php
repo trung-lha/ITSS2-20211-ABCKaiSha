@@ -49,7 +49,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">採用開始日 <span style="color: red">*</span></label>
-                            <input type="datetime-local" name="limitation" class="form-control" id="exampleFormControlInput1" required value="{{old('limitation')}}">
+                            <input type="date" name="limitation" class="form-control" id="exampleFormControlInput1" required value="{{old('limitation')}}">
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlSelect2">イメージ <span style="color: red">*</span></label>
