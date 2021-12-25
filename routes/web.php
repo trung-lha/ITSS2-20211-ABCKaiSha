@@ -86,4 +86,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/recruit/{id}/edit', [RecruitmentController::class, 'edit'])->name('recruit.edit');
     // PATCH
     Route::patch('/recruit/{id}', [RecruitmentController::class, 'update'])->name('recruit.update');
+    // DELETE - destroy
+    Route::delete('/recruit/{id}/delete', [RecruitmentController::class, 'destroy']);
 });

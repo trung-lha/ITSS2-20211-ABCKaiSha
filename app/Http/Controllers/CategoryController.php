@@ -75,16 +75,23 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $request->flash();
-        $request->validate([
-            'name' => 'required|unique:categories'
-        ], [
-            'name.required' => 'カテゴリ名を入力してください',
-            'name.unique' => 'このカテゴリはすでに存在します'
-        ]);
+        
+        $category = Category::where('name', $request->name)->get();
+        $count = count($category);
+
+        if ($count >= 1 && $category[0]->id != $id) {
+            $request->validate([
+                'name' => 'required|unique:categories'
+            ], [
+                'name.required' => 'カテゴリ名を入力してください',
+                'name.unique' => 'このカテゴリはすでに存在します'
+            ]);
+        }
 
         $count = Category::where('id', $id)
             ->update([
-                'name' => $request->name
+                'name' => $request->name,
+                'description' => $request->description
             ]);
         
         if ($count == 0) {

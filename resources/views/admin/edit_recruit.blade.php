@@ -43,7 +43,7 @@
                     <div class="form-group">
                         <label for="exampleFormControlInput1">給料 <span style="color: red">*</span></label>
                         <p><small>(単位：万円)</small></p>
-                        <input type="number" name="salary" class="form-control" id="exampleFormControlInput1" required value="{{$recruit->salary}}">
+                        <input type="number" name="salary" step="0.01" class="form-control" id="exampleFormControlInput1" required value="{{$recruit->salary}}">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">場所 <span style="color: red">*</span></label>
