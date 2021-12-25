@@ -54,7 +54,7 @@ class RecruitmentController extends Controller
 
     public function index_ad()
     {
-        $recruiments = Recruitment::orderBy('id', 'desc')->paginate(10);
+        $recruiments = Recruitment::orderBy('id', 'desc')->get();
         return view('admin.list_recruit', compact('recruiments'));
     }
 

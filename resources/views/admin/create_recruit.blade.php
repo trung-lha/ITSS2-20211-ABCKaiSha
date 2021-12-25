@@ -6,15 +6,15 @@
         <div class="container">
         <div class="row">
             <div class="col-12 ml-3 mb-5">
-                <button type="button" class="btn" style="border: solid 1px black"><a href="{{route('recruit')}}" style="color: black">一覧に戻る</a></button>
             </div>
         </div>
-          <div class="row">
+        <div class="row">
             <div class="col-2"></div>
             <div class="col-8">
-              <div class="card">
+                <div class="card">
                 <div class="card-header">
-                    <h3 class=" mt-2 text-center">採用情報を新規追加</h3>
+                    <a href="{{route('recruit')}}" class="float-right"><button type="button" class="btn btn-secondary"><i class="fa fa-arrow-left"></i>&nbsp;戻る</button></a>
+                    <h3 class=" mt-2 text-left">採用情報を新規追加</h3>
                 </div>
                 <div class="card-body">
                     <form class="container" id="form_create" action="{{route('recruit.store')}}" method="post" enctype="multipart/form-data">
@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">給料 <span style="color: red">*</span></label>
-                            <p><small>(単位：万円)</small></p>
+                            <p><small>(単位:万円)</small></p>
                             <input type="number" name="salary" class="form-control" id="exampleFormControlInput1" required value="{{old('salary')}}">
                         </div>
                         <div class="form-group">
@@ -59,8 +59,8 @@
                             <label for="exampleFormControlTextarea1">要約情報 <span style="color: red">*</span></label>
                             <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" required>{{old('description')}}</textarea>
                         </div>
-                        <div class="text-right mt-4">
-                            <button type="submit" class="btn btn-primary" onclick="onSubmitForm()">追加</button>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-success">追加</button>
                         </div>
                     </form>
                 </div>
@@ -74,10 +74,4 @@
     <aside class="control-sidebar control-sidebar-dark">
       <!-- Control sidebar content goes here -->
     </aside>
-    <script type="text/javascript">
-        function onSubmitForm() {
-            var form = document.getElementById('form_create');
-            form.submit();
-        }
-    </script>
 @endsection

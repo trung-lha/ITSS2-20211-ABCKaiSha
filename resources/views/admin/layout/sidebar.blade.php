@@ -37,7 +37,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-header">管理</li>
           <li class="nav-item">
-            <a href="{{route('admin.index')}}" class="nav-link">
+            <a href="{{route('admin.index')}}" class="nav-link @if(\Route::currentRouteName() == 'admin.index') active @endif">
               <i class="nav-icon fas fa-carrot"></i>
               <p>
                 商品
@@ -46,7 +46,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('category')}}" class="nav-link">
+            <a href="{{route('category')}}" class="nav-link @if(\Route::currentRouteName() == 'category') active @endif">
               <i class="nav-icon fas fa-list-alt"></i>
               <p>
                 カテゴリ
@@ -54,14 +54,14 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('recruit')}}" class="nav-link">
+            <a href="{{route('recruit')}}" class="nav-link @if(\Route::currentRouteName() == 'recruit') active @endif">
               <i class="nav-icon fas fa-user"></i>
               <p>採用情報</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="../kanban.html" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-columns"></i>
               <p>
                 応募者候補
@@ -69,7 +69,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="../kanban.html" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-columns"></i>
               <p>
                 問い合わせ
