@@ -36,7 +36,7 @@
                             </div>
                         @endif
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">カテゴリ名<span style="color: red">*</span></label>
+                            <label for="exampleFormControlInput1">カテゴリ名 <span style="color: red">*</span></label>
                             <input type="text" name="name" class="form-control" id="exampleFormControlInput1" required value="{{old('name')}}">
                         </div>
                         <div class="text-right mt-4">
