@@ -46,7 +46,12 @@
                                 <td><p style="white-space: pre-wrap;text-align: justify;margin-top: 10px">{{$recruit['description']}}</p></td>
                                 <td>{{$recruit['location']}}</td>
                                 <td>{{$recruit['salary']}}万円</td>
-                                <td>{{$recruit['limitation']}}</td>
+                                <td>
+                                <?php
+                                    $date = new DateTime($recruit['limitation']);
+                                    echo $date->format("Y/m/d");
+                                ?>
+                                </td>
                                 <td style="text-align: center; width: 100px;">
                                     <a name="" id="" class="btn btn-warning" href="{{ route('recruit.edit', $recruit['id']) }}" role="button"><i class="fa fa-pencil-alt"></i></a>
                                     &nbsp;&nbsp;
@@ -94,7 +99,7 @@
 <script type="text/javascript">
     function showModalDelete(id) {
         var formDelete = document.getElementById('formDelete');
-        formDelete.action = `{{url('/admin/recruiments')}}/${id}/delete`;
+        formDelete.action = `{{url('/admin/recruit')}}/${id}/delete`;
     }
     function submitFormDelete() {
         var formDelete = document.getElementById('formDelete');

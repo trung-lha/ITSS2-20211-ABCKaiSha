@@ -168,9 +168,9 @@ class RecruitmentController extends Controller
     {
         $count = Recruitment::destroy($id);
         if ($count == 0) {
-            return redirect(route('category'))->with(['message' => '採用の削除に失敗しました']);
+            return redirect(route('recruit'))->with(['message' => '採用の削除に失敗しました']);
         }
-        return redirect(route('category'))->with(['message' => '採用を正常に削除']);
+        return redirect(route('recruit'))->with(['message' => '採用を正常に削除']);
     }
 
 

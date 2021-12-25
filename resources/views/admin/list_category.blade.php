@@ -26,6 +26,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>カテゴリー名</th>
+                                <th style="width: 47%;">説明</th>
                                 <th>アクション</th>
                             </tr>
                         </thead>
@@ -35,6 +36,9 @@
                             <tr>
                                 <td style="width: 70px">{{$category['id']}}</td>
                                 <td class="td-start">{{$category['name']}}</td>
+                                <td class="td-start">
+                                  <p style="white-space: pre-wrap;text-align: justify;margin-top: 10px">{{$category["description"]}}</p>
+                                </td>
                                 <td style="text-align: center; width: 150px;">
                                     <a name="" id="" class="btn btn-warning" href="{{ route('category.edit', $category['id']) }}" role="button"><i class="fa fa-pencil-alt"></i></a>
                                     &nbsp;&nbsp;
