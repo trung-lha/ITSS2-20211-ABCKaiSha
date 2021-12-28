@@ -45,7 +45,8 @@ class CategoryController extends Controller
             ],
             [
                 'name.required' => 'カテゴリ名を入力してください',
-                'name.unique' => 'このカテゴリはすでに存在します'
+                'name.unique' => 'このカテゴリはすでに存在します',
+                'description.required' => '説明を入力してください',
             ]
         );
 
@@ -80,15 +81,21 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $request->flash();
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required'
+        ], [
+            'name.required' => 'カテゴリ名を入力してください',
+            'description.required' => '説明を入力してください',
+        ]);
 
         $category = Category::where('name', $request->name)->get();
         $count = count($category);
 
         if ($count >= 1 && $category[0]->id != $id) {
             $request->validate([
-                'name' => 'required|unique:categories'
+                'name' => 'unique:categories'
             ], [
-                'name.required' => 'カテゴリ名を入力してください',
                 'name.unique' => 'このカテゴリはすでに存在します'
             ]);
         }
