@@ -14,7 +14,7 @@
                     <div class="text d-block pl-md-4">
                         <div class="row mb-5">
                             <div class="col-12">
-                                <h3 class="heading"><b><a href=" {{route('recruitment.detail', $key+1)}} ">{{$item->name}}</a></b></h3>
+                                <h3 class="heading"><b><a href=" {{route('recruitment.detail', $item->id)}} ">{{$item->name}}</a></b></h3>
                                 <p>{{$item->description}}</p>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                                 ?>
                             </div>
                             <div class="col-2">
-                                <a href=" {{route('recruitment.detail', $key+1)}} " class="btn btn-success btn-sm" style="float: right">もっと見る</a>
+                                <a href=" {{route('recruitment.detail', $item->id)}} " class="btn btn-success btn-sm" style="float: right">もっと見る</a>
                             </div>
                         </div>
                     </div>

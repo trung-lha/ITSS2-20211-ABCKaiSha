@@ -13,21 +13,15 @@ class RecruitmentController extends Controller
     public function index()
     {
         $recruiments = Recruitment::orderBy('id', 'desc')->paginate(5);
-
         return view('users.recruit', compact('recruiments'));
     }
 
-    public function detail(Request $request)
+    public function detail($recruitID)
     {
-        $recruit = Recruitment::find($request->recruitID);
-        $create_at = $recruit->created_at->isoFormat('dddd D/MM/YYYY');
-        $location = $recruit->location;
-        $salary = $recruit->salary;
-        $idImage = $request->recruitID;
-        $description = $recruit->description;
+        $recruit = Recruitment::find($recruitID);
         // TODO: sua anh
 
-        return view('users.detailRecruit', ['recruit' => $recruit, 'idImage' => $idImage, 'create_at' => $create_at, 'location' => $location, 'salary' => $salary, 'description' => $description]);
+        return view('users.detailRecruit', ['recruit' => $recruit]);
     }
 
     public function register(Request $request)
@@ -54,7 +48,7 @@ class RecruitmentController extends Controller
 
     public function index_ad()
     {
-        $recruiments = Recruitment::orderBy('id', 'desc')->get();
+        $recruiments = Recruitment::orderBy('id', 'desc')->paginate(10);
         return view('admin.list_recruit', compact('recruiments'));
     }
 
@@ -105,7 +99,11 @@ class RecruitmentController extends Controller
 
         if ($request->hasFile('img')) {
             $file = $this->save_record_image($request->file('img'));
-            $recruit['img'] = $file['data']['url'];
+            if (!empty($file['data'])) {
+                $recruit['img'] = $file['data']['url'];
+            } else {
+                return redirect()->back()->with(['error' => 'この画像はサポートされていません。 別の写真を選択してください。']);
+            }
         }
 
         Recruitment::create($recruit);
@@ -135,18 +133,47 @@ class RecruitmentController extends Controller
     public function update(Request $request, $id)
     {
         $request->flash();
+
+        $request->validate(
+            [
+                'name' => 'required',
+                'salary' => 'required|numeric|min:1',
+                'location' => 'required',
+                'limitation' => 'required|date',
+                'description' => 'required'
+            ],
+            [
+                'name.required' => '採用タイトルを入力してください',
+                'salary.required' => '給料を入力してください',
+                'salary.numeric' => '給料は数字でなければなりません',
+                'salary.min' => '給料は1より大きくなければなりません',
+                'location.required' => '場所を入力してください',
+                'limitation.required' => '採用開始日を入力してください',
+                'limitation.date' => 'Phải là kiểu date',
+                'description.required' => '要約情報を入力してください'
+            ]
+        );
+
         $recruit = $request->only(['name', 'salary', 'location', 'limitation', 'description']);
+
         if ($request->hasFile('img')) {
+
             $request->validate([
-                'img' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+                'img' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:4096',
             ], [
                 'img.required' => 'イメージをアップロードしてください',
+                'img.max' => 'イメージのサイズは4096超えできません',
                 'img.mimes' => '画像拡張子は「jpg, png, jpeg, gif, svg」が必要です',
                 'img.image' => 'イメージ以外はアップロードができません'
             ]);
 
             $file = $this->save_record_image($request->file('img'));
-            $recruit['img'] = $file['data']['url'];
+
+            if (!empty($file['data'])) {
+                $recruit['img'] = $file['data']['url'];
+            } else {
+                return redirect()->back()->with(['error' => 'この画像はサポートされていません。 別の写真を選択してください。']);
+            }
         }
 
         $count = Recruitment::where('id', $id)

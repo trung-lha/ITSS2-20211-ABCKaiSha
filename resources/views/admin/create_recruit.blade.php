@@ -20,7 +20,7 @@
                     <form class="container" id="form_create" action="{{route('recruit.store')}}" method="post" enctype="multipart/form-data">
                     <p class="text-left" style="display: block; color: red; font-size: 0.8rem;">＊は必須項目です。</p>
                         @csrf
-                        @if ($message = Session::get('success'))
+                        @if ($message = Session::get('error'))
                             <div class="alert alert-success">
                                 <strong>{{ $message }}</strong>
                             </div>
