@@ -99,7 +99,11 @@ class RecruitmentController extends Controller
 
         if ($request->hasFile('img')) {
             $file = $this->save_record_image($request->file('img'));
-            $recruit['img'] = $file['data']['url'];
+            if (!empty($file['data'])) {
+                $recruit['img'] = $file['data']['url'];
+            } else {
+                return redirect()->back()->with(['error' => 'この画像はサポートされていません。 別の写真を選択してください。']);
+            }
         }
 
         Recruitment::create($recruit);
@@ -153,17 +157,23 @@ class RecruitmentController extends Controller
         $recruit = $request->only(['name', 'salary', 'location', 'limitation', 'description']);
 
         if ($request->hasFile('img')) {
+
             $request->validate([
-                'img' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+                'img' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:4096',
             ], [
                 'img.required' => 'イメージをアップロードしてください',
+                'img.max' => 'イメージのサイズは4096超えできません',
                 'img.mimes' => '画像拡張子は「jpg, png, jpeg, gif, svg」が必要です',
                 'img.image' => 'イメージ以外はアップロードができません'
             ]);
 
             $file = $this->save_record_image($request->file('img'));
-            dd($file);
-            $recruit['img'] = $file['data']['url'];
+
+            if (!empty($file['data'])) {
+                $recruit['img'] = $file['data']['url'];
+            } else {
+                return redirect()->back()->with(['error' => 'この画像はサポートされていません。 別の写真を選択してください。']);
+            }
         }
 
         $count = Recruitment::where('id', $id)
