@@ -7,7 +7,10 @@
 <div class="container">
   <div class="col-10 offset-1">
     <div class="row mt-5 text-center" style="border: solid 1px black; border-radius: 10px; background-color: rgb(243, 241, 241)">
-        <div class="col-12 mt-3">
+      <div class="col-4">
+        <img src="{{ asset('images/kaisha2.jpeg') }}" alt="kaisha" style="object-fit: cover; height: 400px; width: 300px; border-radius: 10px; margin-left: -5.5%">
+      </div>
+      <div class="col-8 mt-3">
             <form>
                 <div class="form-group row">
                   <label for="inputEmail3" class="col-sm-2 col-form-label">会社称号</label>

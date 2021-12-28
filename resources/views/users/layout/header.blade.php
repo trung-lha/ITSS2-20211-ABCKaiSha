@@ -10,7 +10,6 @@
             <li class="nav-item active"><a href="{{ route('user.home') }}" class="nav-link">ホーム</a></li>
         </li>
             <li class="nav-item"><a href="{{ route('intro') }}" class="nav-link">会社概要</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">事業内容</a></li>
             <li class="nav-item"><a href=" {{route('recruitment.list')}} " class="nav-link">採用情報</a></li>
             <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link">間い合わせ</a></li>
         </ul>

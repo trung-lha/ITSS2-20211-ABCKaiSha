@@ -1,6 +1,6 @@
 @extends('users.layout.index')
 @section('header')
-@include('users.layout.header', ['title' => "", 'urlBg' => "/contact.jpeg"])
+@include('users.layout.header', ['title' => "お問い合わせ", 'urlBg' => "/contact.jpeg"])
 @endsection
 
 @section('content')

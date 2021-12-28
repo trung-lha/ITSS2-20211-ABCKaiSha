@@ -13,7 +13,7 @@
               <h3 class=" mt-2 text-left">詳細情報</h3>
             </div>
             <div class="card-body">
-              <form class="container" id="form_edit" enctype="multipart/form-data" method="POST">
+              <form class="container" id="form_edit" enctype="multipart/form-data" method="POST" action="{{ route('category.update', $category->id) }}">
                 <p class="text-left" style="display: block; color: red; font-size: 0.8rem;">＊は必須項目です。</p>
                 @csrf
                 @method('PATCH')
@@ -43,7 +43,7 @@
                   </textarea>
                 </div>
                 <div class="text-center mt-4">
-                  <button type="submit" class="btn btn-primary" onclick="onSubmitForm(`{{$category->id}}`)">更新</button>
+                  <button type="submit" class="btn btn-primary">更新</button>
                 </div>
               </form>
             </div>
@@ -56,13 +56,4 @@
 <aside class="control-sidebar control-sidebar-dark">
   <!-- Control sidebar content goes here -->
 </aside>
-<script type="text/javascript">
-  document.getElementById('exampleFormControlTextarea1').value = document.getElementById('exampleFormControlTextarea1').value.trim();
-
-  function onSubmitForm(id) {
-    var form = document.getElementById('form_edit');
-    form.action = `{{url('/admin/categories')}}/${id}`;
-    form.submit();
-  }
-</script>
 @endsection
