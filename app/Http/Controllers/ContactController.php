@@ -12,6 +12,12 @@ class ContactController extends Controller
         return view('users.contact');
     }
 
+    public function index_ad()
+    {
+        $contacts = Contact::orderBy('id', 'desc')->paginate(10);
+        return view('admin.contacts.index', compact('contacts'));
+    }
+
     public function contact(Request $request)
     {
         $request->flash();
