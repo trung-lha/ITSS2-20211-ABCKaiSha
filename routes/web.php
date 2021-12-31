@@ -68,4 +68,5 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::delete('/recruit/{id}/delete', [RecruitmentController::class, 'destroy'])->name('recruit.delete');
 
     Route::get('/contacts', [ContactController::class, 'index_ad'])->name('contacts');
+    Route::patch('/contacts/{id}/status', [ContactController::class, 'update_status']);
 });

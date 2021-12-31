@@ -43,8 +43,8 @@
                                 <td>{{$contact['email']}}</td>
                                 <td style="text-align: center; width: 100px;">
                                     <div class="custom-control custom-switch">
-                                      <input type="checkbox" class="custom-control-input" id="checkSwitch">
-                                      <label class="custom-control-label" for="checkSwitch"></label>
+                                      <input type="checkbox" class="custom-control-input" id="checkSwitch_{{$contact['id']}}" onchange="changeStatus(event,`{{$contact['id']}}`)">
+                                      <label class="custom-control-label" for="checkSwitch_{{$contact['id']}}"></label>
                                     </div>
                                 </td>
                             </tr>
@@ -64,6 +64,22 @@
     </aside>
 
 <script>
+
+  function changeStatus(event, id = 1) {
+    var status = event.target.checked;
+    var endpoint = `${id}/status`;
+    $.ajax({
+      url: `{{url('admin/contacts')}}/${endpoint}`,
+      type: 'PATCH',
+      data: {
+        '_token': '{{csrf_token()}}',
+        '_method': `{{method_field('PATCH')}}`,
+        status: status
+      }
+    }).done(result => {
+      $(`#checkSwitch_${id}`).prop('disabled', true);
+    }).fail(error => console.error(error));
+  }
   $(function () {
     $('#contacts-list').DataTable({
       "paging": true,

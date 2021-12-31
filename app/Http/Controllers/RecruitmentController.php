@@ -207,7 +207,7 @@ class RecruitmentController extends Controller
 
     private function save_record_image($image, $name = null)
     {
-        $API_KEY = '15672aae60910740d9ba45de64e8986d';
+        $API_KEY = '53f540128a97fa75d4dfcba827eb0511';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=' . $API_KEY);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
