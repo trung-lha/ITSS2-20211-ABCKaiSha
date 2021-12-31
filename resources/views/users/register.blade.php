@@ -31,7 +31,7 @@
             <div class="" style="border-style: solid; width: 60%; padding: 20px; margin-left: 20%;padding-left: 80px;padding-right: 80px;">
                 <h1>登録</h1>
                 <p class="text-left" style="display: block; color: red; font-size: 0.8rem;">＊は必須項目です。</p>
-                <form action="{{ route('user.register') }}" class="info" id="my-form" method="POST">
+                <form action="{{ route('admin.candidate.store') }}" class="info" id="my-form" method="POST">
                     @csrf
                     <input type="hidden" name="id" value="{{$id}}">
                     <input type="hidden" name="recrname", value="{{$name}}">
@@ -48,7 +48,7 @@
                         <input type="text" class="form-control text-left px-3" placeholder="" name="phone" required>
                     </div>
                     <div class="form-group">
-                        <label style="float: left">生年 <span style="color: red">*</span></label>
+                        <label style="float: left">年齢 <span style="color: red">*</span></label>
                         <input type="text" class="form-control text-left px-3" placeholder="" name="age" required>
                     </div>
                     <div class="form-group">
@@ -60,7 +60,7 @@
                         <textarea class="form-control text-left px-3" placeholder="" style="height: 150px" name="exp" required></textarea>
                     </div>
                     <div>
-                        <button class="btn btn-success register" 　type="submit" id="form-submit">登録</button>
+                        <button class="btn btn-success register" type="submit" id="form-submit">登録</button>
                     </div>
                 </form>
             </div>
@@ -71,7 +71,6 @@
 
 <script type="text/javascript">
     $('#form-submit').on('click', function(event) {
-        // event.preventDefault();
         dataForm = $('form').serializeArray();
         check = 1;
         dataForm.forEach((element, index) => {
@@ -79,24 +78,8 @@
                 check = 0;
             }
         });
-        // console.log(dataForm[1]);
         if (check == 1) {
-            event.preventDefault();
-            Swal.fire({
-                title: 'ありがとうございます',
-                text: "登録フォームが保存しました",
-                icon: 'success',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: '採用情報ページへいきます',
-                cancelButtonText: 'キャンセル'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $('#my-form').submit();
-                }
-            })
-
+            $('#my-form').submit();
         }
     });
 </script>

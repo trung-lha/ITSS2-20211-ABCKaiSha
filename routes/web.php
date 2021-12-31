@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyIntroController;
 use App\Http\Controllers\ContactController;
@@ -69,4 +70,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::get('/contacts', [ContactController::class, 'index_ad'])->name('contacts');
     Route::patch('/contacts/{id}/status', [ContactController::class, 'update_status']);
+    Route::get('/candidate', [CandidateController::class, 'index'])->name('admin.candidate');
+    Route::post('/candidate/store', [CandidateController::class, 'store'])->name('admin.candidate.store');
+    Route::post('/candidate/process/{candidateId}', [CandidateController::class, 'candidateProcess'])->name('admin.candidate.process');
+
 });
