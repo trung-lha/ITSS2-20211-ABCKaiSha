@@ -2,6 +2,11 @@
 @section('header')
 @include('users.layout.header', ['title' => "採用情報", 'urlBg' => "/bg_2.jpeg"])
 @endsection
+@if(session()->has('success'))
+    <div class="alert alert-success">
+        {{ session()->get('success') }}
+    </div>
+@endif
 @section('content')
 <section class="ftco-section ftco-degree-bg">
     <div class="container">

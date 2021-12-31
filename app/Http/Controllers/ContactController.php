@@ -14,7 +14,7 @@ class ContactController extends Controller
 
     public function index_ad()
     {
-        $contacts = Contact::orderBy('id', 'desc')->paginate(10);
+        $contacts = Contact::orderBy('id', 'desc')->get();
         return view('admin.contacts.index', compact('contacts'));
     }
 
