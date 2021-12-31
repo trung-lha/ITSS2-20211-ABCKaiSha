@@ -38,7 +38,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],
 
@@ -68,6 +68,12 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+    ],
+
+    'imgbb-api' => [
+        'url' => env('IMAGE_API_URL'),
+        'key' => env('IMAGE_API_KEY'),
+        'timeout' => env('IMAGE_API_TIMEOUT', 10),
     ],
 
 ];

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Kraken;
 use App\Models\Recruitment;
 use Illuminate\Http\Request;
 
@@ -207,22 +208,52 @@ class RecruitmentController extends Controller
 
     private function save_record_image($image, $name = null)
     {
-        $API_KEY = '53f540128a97fa75d4dfcba827eb0511';
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=' . $API_KEY);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
-        $extension = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
-        $file_name = ($name) ? $name . '.' . $extension : $image->getClientOriginalName();
-        $data = array('image' => base64_encode(file_get_contents($image)), 'name' => $file_name);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        $result = curl_exec($ch);
-        if (curl_errno($ch)) {
-            return 'Error:' . curl_error($ch);
-        } else {
-            return json_decode($result, true);
-        }
-        curl_close($ch);
+        $kraken = new Kraken("2cf8e811effba0e8cf4e990beb49d7a2", "113504c156d250effb12e12dc8db3af83978954b");
+        $params = array(
+            "file" => $image,
+            "wait" => true,
+            "lossy" => true
+        );
+
+        return $kraken->upload($params);
     }
+    
+    // {
+    //     $imageBase64 = base64_encode($image);
+
+    //     $uploadData = [
+    //         'key' => config('filesystems.imgbb-api.key'),
+    //         'image' => $imageBase64
+    //     ];
+        
+    //     $client = new Client(); 
+    //     $response = $client->post(config('filesystems.imgbb-api.url'), ['form_params' => $uploadData]);
+        
+    //     $data = json_decode($response->getBody()->getContents());
+
+    //     return [
+    //         'file_name' => $data->data->image->filename,
+    //         'url' => $data->data->url
+    //     ];
+    // }
+    // {
+    //     $API_KEY = '53f540128a97fa75d4dfcba827eb0511';
+    //     $ch = curl_init();
+    //     curl_setopt($ch, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=' . $API_KEY);
+    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    //     curl_setopt($ch, CURLOPT_POST, 1);
+    //     curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
+    //     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    //     $extension = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
+    //     $file_name = ($name) ? $name . '.' . $extension : $image->getClientOriginalName();
+    //     $data = array('image' => base64_encode(file_get_contents($image)), 'name' => $file_name);
+    //     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    //     $result = curl_exec($ch);
+    //     if (curl_errno($ch)) {
+    //         return 'Error:' . curl_error($ch);
+    //     } else {
+    //         return json_decode($result, true);
+    //     }
+    //     curl_close($ch);
+    // }
 }
