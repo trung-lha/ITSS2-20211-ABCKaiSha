@@ -52,4 +52,18 @@ class ContactController extends Controller
 
         return redirect(route('user.home'));
     }
+
+    public function update_status(Request $request, $id)
+    {
+        $status = strcmp('true', $request->status) === 0;
+
+        $count = Contact::where('id', $id)
+                ->update(['status' => $status]);
+
+        if ($count == 0) {
+            return response(['error' => 'Update Failed'], 400);
+        }
+
+        return response(['data' => $status], 200);
+    }
 }

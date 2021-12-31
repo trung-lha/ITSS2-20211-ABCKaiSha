@@ -26,6 +26,7 @@
                         <thead>
                             <tr>
                                 <th>番号</th>
+                                <th>月</th>
                                 <th>製品名</th>
                                 <th>カテゴリー</th>
                                 <th>イメージ</th>
@@ -38,6 +39,7 @@
                             @foreach($products as $product)
                             <tr>
                                 <td style="width: 60px">{{$product['id']}}</td>
+                                <td style="width: 60px">{{$product['month']}}</td>
                                 <td class="td-start">{{$product['name']}}</td>
                                 <td class="td-start">{{$product['category_name']}}</td>
                                 <td style="text-align: center; width: 200px; height: 130px">

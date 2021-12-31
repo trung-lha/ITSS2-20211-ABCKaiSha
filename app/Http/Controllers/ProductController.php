@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Kraken;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
@@ -28,8 +29,10 @@ class ProductController extends Controller
 
     public function listProductsAndCategories()
     {
-        $products = Product::where('category_id', 1)
+        $month = date('m');
+        $products = Product::where(['category_id' => 1, 'month' => $month])
             ->orderBy('id', 'desc')->paginate(8);
+
         $categories = Category::get();
         $imageUrl = [];
         foreach ($products as $key => $product) {
@@ -38,7 +41,7 @@ class ProductController extends Controller
             $url = $img[0]->url;
             array_push($imageUrl, $url);
         }
-        return view('users.home', compact('products', 'categories', 'imageUrl'));
+        return view('users.home', compact('products', 'categories', 'imageUrl', 'month'));
     }
     public function detailProduct(Request $request)
     {
@@ -80,9 +83,11 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
+        $month = date('m');
         $id = Product::create([
             'name' => $request->name,
             'description' => $request->description,
+            'month' => $month,
             'category_id' => $request->category_id,
         ])->id;
 
@@ -90,10 +95,12 @@ class ProductController extends Controller
             foreach ($request->file('images') as $image) {
                 $files = $this->save_record_image($image);
 
-                Image::create([
-                    'url' => $files['data']['url'],
-                    'product_id' => $id
-                ]);
+                if (!empty($files['kraked_url'])) {
+                    Image::create([
+                        'url' => $files['kraked_url'],
+                        'product_id' => $id
+                    ]);
+                }
             }
         }
 
@@ -145,10 +152,12 @@ class ProductController extends Controller
             foreach ($request->file('images') as $image) {
                 $files = $this->save_record_image($image);
 
-                Image::create([
-                    'url' => $files['data']['url'],
-                    'product_id' => $id
-                ]);
+                if (!empty($files['kraked_url'])) {
+                    Image::create([
+                        'url' => $files['kraked_url'],
+                        'product_id' => $id
+                    ]);
+                }
             }
         }
         return redirect()->route('admin.index')->with(['message' => '更新の成功']);
@@ -173,22 +182,52 @@ class ProductController extends Controller
 
     private function save_record_image($image, $name = null)
     {
-        $API_KEY = '15672aae60910740d9ba45de64e8986d';
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=' . $API_KEY);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
-        $extension = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
-        $file_name = ($name) ? $name . '.' . $extension : $image->getClientOriginalName();
-        $data = array('image' => base64_encode(file_get_contents($image)), 'name' => $file_name);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        $result = curl_exec($ch);
-        if (curl_errno($ch)) {
-            return 'Error:' . curl_error($ch);
-        } else {
-            return json_decode($result, true);
-        }
-        curl_close($ch);
+        $kraken = new Kraken("2cf8e811effba0e8cf4e990beb49d7a2", "113504c156d250effb12e12dc8db3af83978954b");
+        $params = array(
+            "file" => $image,
+            "wait" => true,
+            "lossy" => true
+        );
+
+        return $kraken->upload($params);
     }
+    
+    // {
+    //     $imageBase64 = base64_encode($image);
+
+    //     $uploadData = [
+    //         'key' => config('filesystems.imgbb-api.key'),
+    //         'image' => $imageBase64
+    //     ];
+        
+    //     $client = new Client(); 
+    //     $response = $client->post(config('filesystems.imgbb-api.url'), ['form_params' => $uploadData]);
+        
+    //     $data = json_decode($response->getBody()->getContents());
+
+    //     return [
+    //         'file_name' => $data->data->image->filename,
+    //         'url' => $data->data->url
+    //     ];
+    // }
+    // {
+    //     $API_KEY = '53f540128a97fa75d4dfcba827eb0511';
+    //     $ch = curl_init();
+    //     curl_setopt($ch, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=' . $API_KEY);
+    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    //     curl_setopt($ch, CURLOPT_POST, 1);
+    //     curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
+    //     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    //     $extension = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
+    //     $file_name = ($name) ? $name . '.' . $extension : $image->getClientOriginalName();
+    //     $data = array('image' => base64_encode(file_get_contents($image)), 'name' => $file_name);
+    //     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    //     $result = curl_exec($ch);
+    //     if (curl_errno($ch)) {
+    //         return 'Error:' . curl_error($ch);
+    //     } else {
+    //         return json_decode($result, true);
+    //     }
+    //     curl_close($ch);
+    // }
 }
