@@ -43,7 +43,11 @@
                                 <td>{{$contact['email']}}</td>
                                 <td style="text-align: center; width: 100px;">
                                     <div class="custom-control custom-switch">
-                                      <input type="checkbox" class="custom-control-input" id="checkSwitch_{{$contact['id']}}" onchange="changeStatus(event,`{{$contact['id']}}`)">
+                                      <input type="checkbox" class="custom-control-input" 
+                                        id="checkSwitch_{{$contact['id']}}" 
+                                        onchange="changeStatus(event,`{{$contact['id']}}`)"
+                                        {{$contact['status'] === 1? 'disabled checked':''}}
+                                      >
                                       <label class="custom-control-label" for="checkSwitch_{{$contact['id']}}"></label>
                                     </div>
                                 </td>

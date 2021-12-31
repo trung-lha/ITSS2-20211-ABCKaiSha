@@ -59,7 +59,7 @@ class ContactController extends Controller
 
         $count = Contact::where('id', $id)
                 ->update(['status' => $status]);
-                
+
         if ($count == 0) {
             return response(['error' => 'Update Failed'], 400);
         }
