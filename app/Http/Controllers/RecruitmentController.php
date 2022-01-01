@@ -100,8 +100,9 @@ class RecruitmentController extends Controller
 
         if ($request->hasFile('img')) {
             $file = $this->save_record_image($request->file('img'));
-            if (!empty($file['data'])) {
-                $recruit['img'] = $file['data']['url'];
+
+            if (!empty($file['kraked_url'])) {
+                $recruit['img'] = $file['kraked_url'];
             } else {
                 return redirect()->back()->with(['error' => 'この画像はサポートされていません。 別の写真を選択してください。']);
             }
@@ -170,8 +171,8 @@ class RecruitmentController extends Controller
 
             $file = $this->save_record_image($request->file('img'));
 
-            if (!empty($file['data'])) {
-                $recruit['img'] = $file['data']['url'];
+            if (!empty($file['kraked_url'])) {
+                $recruit['img'] = $file['kraked_url'];
             } else {
                 return redirect()->back()->with(['error' => 'この画像はサポートされていません。 別の写真を選択してください。']);
             }

@@ -46,7 +46,16 @@ class CandidateController extends Controller
     public function candidateProcess(Request $request)
     {
         $can = Candidate::find($request->candidateId);
-        $can->status = $request->status;
+        $details = [];
+
+        if ($request->status == "1") {
+            $details['title'] = "入社おめでとうございます。";
+        } else {
+            $details['title'] = "会社にご関心をお寄せいただき、ありがとうございます。 あなたはこの採用ラウンドで失格となりました。";
+        }
+
+        Mail::to($can->mail)->send(new \App\Mail\ConfirmRecruitMail($details));
+        $can->status = (int)$request->status;
         $can->save();
 
         return redirect()->back();
