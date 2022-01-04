@@ -3,7 +3,7 @@
     <div class="container">
         <a class="navbar-brand" href="{{ route('user.home') }}">なにぬね会社</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> Menu
+            <span class="oi oi-menu"></span> メニュー
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
@@ -23,7 +23,6 @@
             <div class="container">
                 <div class="row slider-text justify-content-center align-items-center">
                     <div class="col-md-12 ftco-animate text-center">
-                        <h1 class="">{{$title}}</h1>
                     </div>
                 </div>
             </div>

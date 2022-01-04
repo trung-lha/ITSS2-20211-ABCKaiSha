@@ -20,11 +20,13 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::orderBy('id', 'desc')->get();
+        $months = ['一月', '二月', '三月', '四月', '五月', '六月',
+                    '七月', '八月', '九月', '十月', '十一月', '十二月'];
         foreach ($products as $key => $product) {
             $products[$key] = $product->format();
         }
 
-        return view('admin.list', ['products' => $products]);
+        return view('admin.list', ['products' => $products, 'months' => $months]);
     }
 
     public function listProductsAndCategories()
@@ -72,7 +74,9 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.product_create', ['categories' => $categories]);
+        $months = ['一月', '二月', '三月', '四月', '五月', '六月',
+                    '七月', '八月', '九月', '十月', '十一月', '十二月'];
+        return view('admin.product_create', ['categories' => $categories, 'months' => $months]);
     }
 
     /**
@@ -83,11 +87,10 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $month = date('m');
         $id = Product::create([
             'name' => $request->name,
             'description' => $request->description,
-            'month' => $month,
+            'month' => $request->month,
             'category_id' => $request->category_id,
         ])->id;
 
@@ -95,9 +98,9 @@ class ProductController extends Controller
             foreach ($request->file('images') as $image) {
                 $files = $this->save_record_image($image);
 
-                if (!empty($files['kraked_url'])) {
+                if (!empty($files['data'])) {
                     Image::create([
-                        'url' => $files['kraked_url'],
+                        'url' => $files['data']['url'],
                         'product_id' => $id
                     ]);
                 }
@@ -118,11 +121,14 @@ class ProductController extends Controller
         $product = Product::find($id);
         $images = $product->images()->get();
         $categories = Category::all();
+        $months = ['一月', '二月', '三月', '四月', '五月', '六月',
+                    '七月', '八月', '九月', '十月', '十一月', '十二月'];
 
         return view('admin.product_edit', [
             'product' => $product,
             'images' => $images,
-            'categories' => $categories
+            'categories' => $categories,
+            'months' => $months
         ]);
     }
 
@@ -140,6 +146,7 @@ class ProductController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'category_id' => $request->category_id,
+            'month' => $request->month
         ]);
 
         if ($request->hasFile('images')) {
@@ -152,9 +159,9 @@ class ProductController extends Controller
             foreach ($request->file('images') as $image) {
                 $files = $this->save_record_image($image);
 
-                if (!empty($files['kraked_url'])) {
+                if (!empty($files['data'])) {
                     Image::create([
-                        'url' => $files['kraked_url'],
+                        'url' => $files['data']['url'],
                         'product_id' => $id
                     ]);
                 }
@@ -182,15 +189,36 @@ class ProductController extends Controller
 
     private function save_record_image($image, $name = null)
     {
-        $kraken = new Kraken("2cf8e811effba0e8cf4e990beb49d7a2", "113504c156d250effb12e12dc8db3af83978954b");
-        $params = array(
-            "file" => $image,
-            "wait" => true,
-            "lossy" => true
-        );
-
-        return $kraken->upload($params);
+        $API_KEY = '53f540128a97fa75d4dfcba827eb0511';
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=' . $API_KEY);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $extension = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
+        $file_name = ($name) ? $name . '.' . $extension : $image->getClientOriginalName();
+        $data = array('image' => base64_encode(file_get_contents($image)), 'name' => $file_name);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        $result = curl_exec($ch);
+        if (curl_errno($ch)) {
+            return 'Error:' . curl_error($ch);
+        } else {
+            return json_decode($result, true);
+        }
+        curl_close($ch);
     }
+
+    // {
+    //     $kraken = new Kraken("2cf8e811effba0e8cf4e990beb49d7a2", "113504c156d250effb12e12dc8db3af83978954b");
+    //     $params = array(
+    //         "file" => $image,
+    //         "wait" => true,
+    //         "lossy" => true
+    //     );
+
+    //     return $kraken->upload($params);
+    // }
     
     // {
     //     $imageBase64 = base64_encode($image);
@@ -210,24 +238,5 @@ class ProductController extends Controller
     //         'url' => $data->data->url
     //     ];
     // }
-    // {
-    //     $API_KEY = '53f540128a97fa75d4dfcba827eb0511';
-    //     $ch = curl_init();
-    //     curl_setopt($ch, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=' . $API_KEY);
-    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    //     curl_setopt($ch, CURLOPT_POST, 1);
-    //     curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
-    //     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    //     $extension = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
-    //     $file_name = ($name) ? $name . '.' . $extension : $image->getClientOriginalName();
-    //     $data = array('image' => base64_encode(file_get_contents($image)), 'name' => $file_name);
-    //     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    //     $result = curl_exec($ch);
-    //     if (curl_errno($ch)) {
-    //         return 'Error:' . curl_error($ch);
-    //     } else {
-    //         return json_decode($result, true);
-    //     }
-    //     curl_close($ch);
-    // }
+    
 }

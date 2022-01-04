@@ -34,7 +34,7 @@ class StoreProductRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => "製品名を入力してください",
+            'name.required' => "商品名を入力してください",
             'description.required' => '説明を入力してください',
             'images.required' => 'イメージをアップロードしてください',
             'images.*.mimes' => '画像拡張子は「jpg, png, jpeg, gif, svg」が必要です',

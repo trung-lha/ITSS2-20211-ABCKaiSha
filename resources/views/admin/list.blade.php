@@ -1,4 +1,4 @@
-@section('title', 'List Product')
+@section('title', '商品管理')
 @extends('admin.layout.index')
 @section('content')
     <div class="content-wrapper">
@@ -6,7 +6,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>製品管理</h1>
+              <h1>商品管理</h1>
             </div>
           </div>
         </div>
@@ -18,7 +18,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title mt-2">製品リスト</h3>
+                    <h3 class="card-title mt-2">商品リスト</h3>
                     <a href="{{ route('admin.product.create') }}"><button class="btn btn-success float-right" >新商品</button></a>
                 </div>
                 <div class="card-body">
@@ -27,7 +27,7 @@
                             <tr>
                                 <th>番号</th>
                                 <th>月</th>
-                                <th>製品名</th>
+                                <th>商品名</th>
                                 <th>カテゴリー</th>
                                 <th>イメージ</th>
                                 <th>説明</th>
@@ -36,10 +36,10 @@
                         </thead>
                         <tbody>
                             @if (empty($products) == false)
-                            @foreach($products as $product)
+                            @foreach($products as $i => $product)
                             <tr>
-                                <td style="width: 60px">{{$product['id']}}</td>
-                                <td style="width: 60px">{{$product['month']}}</td>
+                                <td style="width: 60px">{{$i + 1}}</td>
+                                <td style="width: 60px">{{$months[$product['month'] - 1]}}</td>
                                 <td class="td-start">{{$product['name']}}</td>
                                 <td class="td-start">{{$product['category_name']}}</td>
                                 <td style="text-align: center; width: 200px; height: 130px">
@@ -72,7 +72,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">リストから製品を削除？</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">リストから商品を削除？</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -81,7 +81,7 @@
                     <form method="post" id="formDelete">
                         @csrf
                         <input type="hidden" name="_method" value="delete">
-                        この製品を削除しますか？
+                        この商品を削除しますか？
                     </form>
                 </div>
                 <div class="modal-footer">

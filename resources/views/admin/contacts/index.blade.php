@@ -23,7 +23,7 @@
                     <table id="contacts-list" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th style="width: 30px">ID</th>
+                                <th style="width: 30px">番号</th>
                                 <th>名前</th>
                                 <th style="width: 300px">内容</th>
                                 <th>メールアドレス</th>
@@ -32,9 +32,9 @@
                         </thead>
                         <tbody>
                             @if (empty($contacts) == false)
-                            @foreach($contacts as $contact)
+                            @foreach($contacts as $i => $contact)
                             <tr>
-                                <td>{{$contact['id']}}</td>
+                                <td>{{$i+1}}</td>
                                 <td>{{$contact['username']}}</td>
                                 <td>
                                   <p style="font-weight: bolder">{{$contact['content']}}</p>

@@ -7,7 +7,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('user.home') }}" class="nav-link">Home</a>
+        <a href="{{ route('user.home') }}" class="nav-link">ホーム</a>
       </li>
     </ul>
 
@@ -49,7 +49,7 @@
             <a href="{{route('category')}}" class="nav-link @if(\Route::currentRouteName() == 'category') active @endif">
               <i class="nav-icon fas fa-list-alt"></i>
               <p>
-                カテゴリ
+                カテゴリー
               </p>
             </a>
           </li>
