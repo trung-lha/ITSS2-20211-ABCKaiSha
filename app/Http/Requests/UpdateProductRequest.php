@@ -33,7 +33,7 @@ class UpdateProductRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => "製品名を入力してください",
+            'name.required' => "商品名を入力してください",
             'description.required' => '説明を入力してください',
             'images.*.mimes' => 'イメージはjpg,png,jpeg,gif,svgです。',
             'images.*.max' => 'イメージのサイズは4096を超えてはなりません。',

@@ -1,4 +1,4 @@
-@section('title', 'カテゴリ管理')
+@section('title', 'カテゴリー管理')
 @extends('admin.index')
 @section('content')
     <div class="content-wrapper">
@@ -6,7 +6,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>カテゴリ管理</h1>
+              <h1>カテゴリー管理</h1>
             </div>
           </div>
         </div>
@@ -24,7 +24,7 @@
                     <table id="categories-list" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>番号</th>
                                 <th>カテゴリー名</th>
                                 <th style="width: 47%;">説明</th>
                                 <th>アクション</th>
@@ -32,9 +32,9 @@
                         </thead>
                         <tbody>
                             @if (empty($categories) == false)
-                            @foreach($categories as $category)
+                            @foreach($categories as $i => $category)
                             <tr>
-                                <td style="width: 70px">{{$category['id']}}</td>
+                                <td style="width: 70px">{{$i + 1}}</td>
                                 <td class="td-start">{{$category['name']}}</td>
                                 <td class="td-start">
                                   <p style="white-space: pre-wrap;text-align: justify;margin-top: 10px">{{$category["description"]}}</p>
@@ -63,7 +63,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">カテゴリを削除？</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">カテゴリーを削除？</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -72,7 +72,7 @@
                     <form method="post" id="formDelete">
                         @csrf
                         <input type="hidden" name="_method" value="delete">
-                        このカテゴリを削除しますか？
+                        このカテゴリーを削除しますか？
                     </form>
                 </div>
                 <div class="modal-footer">

@@ -33,12 +33,12 @@
                 </div>
                 @endif
                 <div class="form-group">
-                  <label for="exampleFormControlInput1">カテゴリ名 <span style="color: red">*</span></label>
-                  <input type="text" name="name" class="form-control" id="exampleFormControlInput1" required value="{{$category->name}}">
+                  <label for="cate_name_edit">カテゴリー名 <span style="color: red">*</span></label>
+                  <input type="text" name="name" class="form-control" id="cate_name_edit" required value="{{$category->name}}">
                 </div>
                 <div class="form-group">
-                  <label for="exampleFormControlTextarea1">説明 <span style="color: red">*</span></label>
-                  <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="6" cols="50" required>
+                  <label for="cate_desc_edit">説明 <span style="color: red">*</span></label>
+                  <textarea class="form-control" name="description" id="cate_desc_edit" rows="6" cols="50" required>
                   {{trim($category->description)}}
                   </textarea>
                 </div>
@@ -56,4 +56,18 @@
 <aside class="control-sidebar control-sidebar-dark">
   <!-- Control sidebar content goes here -->
 </aside>
+
+<script>
+  document.getElementById("cate_desc_edit").value = document.getElementById("cate_desc_edit").value.trim();
+  function changeName(event) {
+    document.getElementById("cate_name_edit").value = event.target.value.trim();
+    console.log(document.getElementById("cate_name_edit").value);
+  }
+
+  function changeDesc(event) {
+    document.getElementById("cate_desc_edit").value = document.getElementById("cate_desc_edit").value.trim();
+    console.log(document.getElementById("cate_desc_edit").value);
+  }
+  
+</script>
 @endsection

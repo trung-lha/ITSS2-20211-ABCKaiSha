@@ -24,7 +24,7 @@
                     <table id="recruiments-list" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>番号</th>
                                 <th style="width: 100px">採用タイトル</th>
                                 <th style="width: 70px">イメージ</th>
                                 <th>要約情報</th>
@@ -36,9 +36,9 @@
                         </thead>
                         <tbody>
                             @if (empty($recruiments) == false)
-                            @foreach($recruiments as $recruit)
+                            @foreach($recruiments as $i => $recruit)
                             <tr>
-                                <td>{{$recruit['id']}}</td>
+                                <td>{{$i+1}}</td>
                                 <td>{{$recruit['name']}}</td>
                                 <td style="text-align: center;">
                                     <img src="{{$recruit['img']}}" alt="{{$recruit['name']}}" class="img-thumbnail" style=" width:70px; height:70px">

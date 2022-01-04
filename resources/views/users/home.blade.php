@@ -1,6 +1,6 @@
 @extends('users.layout.index')
 @section('header')
-    @include('users.layout.header', ['title' => "素早く提供する最高の農作物をあなたへ", 'urlBg' => "/bg_1.jpg"])
+    @include('users.layout.header', ['urlBg' => "/bg_1.jpg"])
 @endsection
 @section('content')
 <style>

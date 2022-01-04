@@ -1,4 +1,4 @@
-@section('title', 'List Product')
+@section('title', '新商品追加')
 @extends('admin.layout.index')
 @section('content')
     <div class="content-wrapper">
@@ -17,7 +17,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                    <h3 class=" mt-2 text-center">新製品追加</h3>
+                    <h3 class=" mt-2 text-center">新商品追加</h3>
                 </div>
                 <div class="card-body">
                     <form class="container" id="form_create" enctype="multipart/form-data" method="POST" action="{{route('admin.store')}}">
@@ -39,12 +39,12 @@
                             </div>
                         @endif
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">製品名 <span style="color: red">*</span></label>
+                            <label for="exampleFormControlInput1">商品名 <span style="color: red">*</span></label>
                             <input type="text" name="name" class="form-control" id="exampleFormControlInput1" required value="{{old('name')}}">
                         </div>
                         @if (empty($categories) == false)
                         <div class="form-group">
-                            <label for="exampleFormControlSelect1">カテゴリ <span style="color: red">*</span></label>
+                            <label for="exampleFormControlSelect1">カテゴリー <span style="color: red">*</span></label>
                             <select class="form-control" name="category_id" id="exampleFormControlSelect1" required>
                                 @foreach ($categories as $category)
                                 <option value="{{$category->id}}" {{(old('category_id') == $category->id) ? 'selected' : ''}}>{{$category->name}}</option>
@@ -52,6 +52,14 @@
                             </select>
                         </div>
                         @endif
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">月 <span style="color: red">*</span></label>
+                            <select class="form-control" name="month" id="exampleFormControlSelect1" required>
+                                @for ($i = 1; $i < 13; $i++)
+                                <option value="{{$i}}" {{(old('month') == $i) ? 'selected' : ''}}>{{$months[$i-1]}}</option>
+                                @endfor
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="exampleFormControlSelect2">イメージ <span style="color: red">*</span></label>
                             <input type="file" name="images[]" class="form-control-file" id="exampleFormControlFile1" multiple required accept="image/png, image/jpeg">
