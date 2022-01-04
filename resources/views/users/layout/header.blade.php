@@ -23,6 +23,7 @@
             <div class="container">
                 <div class="row slider-text justify-content-center align-items-center">
                     <div class="col-md-12 ftco-animate text-center">
+                        <p><a href="" class="btn btn-primary">無料お試しプラン登録</a></p>
                     </div>
                 </div>
             </div>

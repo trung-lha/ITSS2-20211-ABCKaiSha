@@ -43,7 +43,9 @@ class ProductController extends Controller
             $url = $img[0]->url;
             array_push($imageUrl, $url);
         }
-        return view('users.home', compact('products', 'categories', 'imageUrl', 'month'));
+        $months = ['一月', '二月', '三月', '四月', '五月', '六月',
+                    '七月', '八月', '九月', '十月', '十一月', '十二月'];
+        return view('users.home', compact('products', 'categories', 'imageUrl', 'month', 'months'));
     }
     public function detailProduct(Request $request)
     {
