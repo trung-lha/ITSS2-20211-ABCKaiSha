@@ -13,6 +13,7 @@
             {{ $recruit->name }}
         @endif
     </div>
+<div class="container">
     <section class="ftco-section ftco-degree-bg" style = 'text-align: center; margin-top: -50px'>
         <div class="container" style = "border-style: solid; padding: 20px">
         @if(!empty($recruit))
@@ -48,4 +49,5 @@
         @endif
         </div>
     </section>
+</div>
 @endsection

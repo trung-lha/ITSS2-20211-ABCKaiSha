@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+// TEST: ko xoa
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    // TEST: ko xoa
+    public function test_plan()
+    {
+        $month = date('m');
+        $products = Product::where('month', $month)->orderBy('id', 'desc');
+        return view('users.test_plan', compact('products', 'month'));
+    }
     public function index()
     {
         return view('users.contact');
