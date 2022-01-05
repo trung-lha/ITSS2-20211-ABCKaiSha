@@ -44,7 +44,7 @@ class CategoryController extends Controller
                 'description' => 'required'
             ],
             [
-                'name.required' => 'カテゴリー名を入力してください',
+                'name.required' => 'カテゴリ名を入力してください',
                 'name.unique' => 'このカテゴリはすでに存在します',
                 'description.required' => '説明を入力してください',
             ]
@@ -85,7 +85,7 @@ class CategoryController extends Controller
             'name' => 'required',
             'description' => 'required'
         ], [
-            'name.required' => 'カテゴリー名を入力してください',
+            'name.required' => 'カテゴリ名を入力してください',
             'description.required' => '説明を入力してください',
         ]);
 
@@ -124,6 +124,6 @@ class CategoryController extends Controller
         if ($count == 0) {
             return redirect(route('category'))->with(['message' => 'カテゴリの削除に失敗しました']);
         }
-        return redirect(route('category'))->with(['message' => 'カテゴリーを正常に削除']);
+        return redirect(route('category'))->with(['message' => 'カテゴリを正常に削除']);
     }
 }

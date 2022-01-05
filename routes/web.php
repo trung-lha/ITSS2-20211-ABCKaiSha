@@ -36,7 +36,7 @@ Route::get('/recruit/detail/{recruitID}', [RecruitmentController::class, 'detail
 Route::get('/recruit/detail/register/{recruitID}', [RecruitmentController::class, 'register'])->name('recruitment.register');
 Route::get('product/detail/{productId}', [ProductController::class, 'detailProduct'])->name('product.detail');
 Route::get('/home',[ProductController::class, 'listProductsAndCategories'])->name('user.home');
-Route::get('/home/{categoryId}', [ProductController::class, 'groupProduct'])->name('groupProduct');
+Route::get('/home/{categoryId}/{month}', [ProductController::class, 'groupProduct'])->name('groupProduct');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'contact'])->name('contact.post');
 Route::get('/company-intro', [CompanyIntroController::class, 'index'])->name('intro');
