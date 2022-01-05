@@ -121,8 +121,10 @@
             $(`#description-${id}`).removeClass('d-none').addClass('d-active');
 
             $(this).addClass("active");
+
+            var month = $('#month-selection').val();
             $.ajax({
-                url: "{{ route('user.home') }}" + '/' + id,
+                url: "{{ route('user.home') }}" + '/' + id + '/' + parseInt(month),
                 method: "GET",
                 success: function(data) {
                     $('#list-productItems').html(data);

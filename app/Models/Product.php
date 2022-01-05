@@ -33,4 +33,8 @@ class Product extends Model
     {
         return $this->hasMany(Image::class);
     }
+
+    public function plans() {
+        return $this->belongsToMany('App\Models\Plan', 'plan_products', 'product_id', 'plan_id');
+    }
 }

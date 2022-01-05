@@ -5,6 +5,7 @@ use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyIntroController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RecruitmentController;
 use App\Http\Controllers\ShipperController;
@@ -42,13 +43,18 @@ Route::post('/contact', [ContactController::class, 'contact'])->name('contact.po
 Route::get('/company-intro', [CompanyIntroController::class, 'index'])->name('intro');
 
 // TEST: ko xoa
-Route::get('/plans', [ContactController::class, 'test_plan'])->name('test-plan');
+Route::get('plan', [PlanController::class, 'index']);
+Route::get('/plans', [PlanController::class, 'create'])->name('test-plan');
+Route::post('/plans', [PlanController::class, 'store'])->name('plan.store');
+Route::get('/plans/{id}/edit', [PlanController::class, 'edit']);
+Route::get('/plans/{id}/delete', [PlanController::class, 'destroy']);
+// end TEST PLAN
 
 Route::get('/admin/login', [AuthController::class, 'get'])->middleware('auth')->name('admin.login');
 Route::post('/admin/login', [AuthController::class, 'post'])->name('admin.login.post');
 Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
-
-Route::prefix('admin')->middleware(['auth'])->group(function () {
+// ->middleware(['auth'])
+Route::prefix('admin')->group(function () {
     Route::get('/', [ProductController::class, 'index']);
     Route::get('/products', [ProductController::class, 'index'])->name('admin.index');
     Route::get('/products/create', [ProductController::class, 'create'])->name('admin.product.create');
