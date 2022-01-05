@@ -14,7 +14,7 @@ class PlanController extends Controller
     {
         $plans = Plan::get();
 
-        foreach($plans as $key => $plan) {
+        foreach ($plans as $key => $plan) {
             $plans[$key] = $plan->format();
         }
 

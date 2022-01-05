@@ -125,7 +125,7 @@
             <div class="form-group row"><label class="col-sm-12 col-form-label"><span style="color: red">*最大3つのプランを選択できる</span></label></div>
             <div class="form-group row">
               <div class="col-sm-12 text-center">
-                <button type="submit" class="btn btn-primary" onclick="postsubmit()">送信</button>
+                <button type="button" class="btn btn-primary" onclick="postsubmit()">送信</button>
               </div>
             </div>
           </form>
@@ -135,8 +135,11 @@
 </section>
 <script>
   function postsubmit() {
-    if ($('#plan-choices').val().length > 3) return alert('最大3つのプランを選択してください')
-    var form = document.getElementById('form_contact').submit();
+    if ($('#plan-choices').val().length > 3) {
+      return alert('最大3つのプランを選択してください');
+    } else {
+      var form = document.getElementById('form_contact').submit();
+    }
   }
   $(function() {
     $('#plan-choices').multiSelect();
