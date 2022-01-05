@@ -3,6 +3,7 @@
     @include('users.layout.header', ['urlBg' => "/bg_1.jpg"])
 @endsection
 @section('content')
+<div class="container">
 <section class="ftco-section">
     @include('users.layout.slider')
     @if(!empty($product))
@@ -38,4 +39,5 @@
     </div>
     @endif
 </section>
+</div>
 @endsection

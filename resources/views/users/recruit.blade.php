@@ -8,6 +8,7 @@
     </div>
 @endif
 @section('content')
+<div class="container">
 <section class="ftco-section ftco-degree-bg">
     <div class="container">
         @if (!empty($recruiments))
@@ -57,5 +58,6 @@
             {{ $recruiments->links() }}
         </div>
     </div>
+</div>
 </div>
 @endsection

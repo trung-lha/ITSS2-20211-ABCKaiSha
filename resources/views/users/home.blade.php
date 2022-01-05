@@ -64,38 +64,8 @@
         color: rgba(0, 0, 0, 0.4); }
     .billing-form .form-control:focus, .billing-form .form-control:active {
         border-color: #82ae46 !important; }
-
-    .slider-text .btn {
-        cursor: pointer;
-        color: #fff;
-        font-size: 1.5rem;
-        padding: 20px 50px;
-        -webkit-border-radius: 30px;
-        -moz-border-radius: 30px;
-        -ms-border-radius: 30px;
-        border-radius: 40px;
-        -webkit-box-shadow: 0px 24px 36px -11px rgba(0, 0, 0, 0.09);
-        -moz-box-shadow: 0px 24px 36px -11px rgba(0, 0, 0, 0.09);
-        box-shadow: 0px 24px 36px -11px rgba(0, 0, 0, 0.09); }
-        .slider-text .btn:hover, .btn:active, .btn:focus {
-            outline: none; }
-        .slider-text .btn.btn-primary {
-            background: #82ae46 !important;
-            opacity: 0.9;
-            border: 1px solid #82ae46; }
-        .slider-text .btn.btn-primary:hover {
-            border: 1px solid #82ae46;
-            opacity: 0.6; }
-        .slider-text .btn.btn-primary:active {
-            border: 1px solid #82ae46;
-            opacity: 0.6; }
-        .slider-text .btn.btn-primary.btn-outline-primary {
-            border: 1px solid #82ae46;
-            color: #82ae46; }
-        .slider-text .btn.btn-primary.btn-outline-primary:hover {
-            border: 1px solid transparent;
-            color: #fff; }
 </style>
+<div class="container">
 <section class="ftco-section">
     @include('users.layout.slider')
     <div class="container mt-5" id="homeRef">
@@ -118,7 +88,7 @@
         </div>
         <form action="#" class="billing-form">
             <div class="d-flex justify-content-center mb-3 align-items-baseline">
-                <label for="month" class="mr-3">フィルター: </label>
+                <label for="month" class="mr-3"><span><i class="fas fa-filter" style="color: gray"></i></span> フィルター: </label>
                 <div class="form-group" style="width: 120px">
                     <div class="select-wrap">
                         <div class="icon"><span class="fas fa-angle-down"></span></div>
@@ -136,7 +106,7 @@
         </div>
     </div>
 </section>
-
+</div>
 <script type="text/javascript">
     $(document).ready(function (){
         $(".category").on('click', function(event) {
@@ -160,10 +130,9 @@
             });
         });
         $('#month-selection').change(function (e) {
-            // TODO: Add them params month
-            alert($(this).val())
+            const categoryId = $(".category.active").data('id')
             $.ajax({
-                url: "home/"+ categoryId + "?page=1",
+                url: "home/"+ categoryId + `/${$(this).val()}`+ "?page=1",
                 method: "GET",
                 success: function(data) {
                     $('#list-productItems').html(data);
