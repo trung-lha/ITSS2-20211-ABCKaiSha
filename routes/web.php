@@ -46,7 +46,7 @@ Route::get('/company-intro', [CompanyIntroController::class, 'index'])->name('in
 Route::get('plan', [PlanController::class, 'index']);
 Route::get('/plans', [PlanController::class, 'create'])->name('test-plan');
 Route::post('/plans', [PlanController::class, 'store'])->name('plan.store');
-Route::get('/plans/{id}/edit', [PlanController::class, 'edit']);
+Route::get('/plans/{id}/update', [PlanController::class, 'edit']);
 Route::get('/plans/{id}/delete', [PlanController::class, 'destroy']);
 // end TEST PLAN
 
