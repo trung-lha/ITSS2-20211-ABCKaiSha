@@ -33,7 +33,7 @@
                 </div>
                 @endif
                 <div class="form-group">
-                  <label for="cate_name_edit">カテゴリー名 <span style="color: red">*</span></label>
+                  <label for="cate_name_edit">カテゴリ名 <span style="color: red">*</span></label>
                   <input type="text" name="name" class="form-control" id="cate_name_edit" required value="{{$category->name}}">
                 </div>
                 <div class="form-group">

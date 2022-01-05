@@ -44,7 +44,7 @@
                         </div>
                         @if (empty($categories) == false)
                         <div class="form-group">
-                            <label for="exampleFormControlSelect1">カテゴリー <span style="color: red">*</span></label>
+                            <label for="exampleFormControlSelect1">カテゴリ <span style="color: red">*</span></label>
                             <select class="form-control" name="category_id" id="exampleFormControlSelect1" required>
                                 @foreach ($categories as $category)
                                 <option value="{{$category->id}}" {{(old('category_id') == $category->id) ? 'selected' : ''}}>{{$category->name}}</option>

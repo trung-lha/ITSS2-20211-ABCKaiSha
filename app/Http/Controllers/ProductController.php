@@ -57,7 +57,11 @@ class ProductController extends Controller
 
     public function groupProduct(Request $request)
     {
-        $productList = Product::where('category_id', $request->categoryId)->orderBy('id', 'desc')->paginate(8);
+        $productList = Product::where([
+            'category_id' => $request->categoryId,
+            'month' => $request->month
+        ])->orderBy('id', 'desc')->paginate(8);
+        
         $imageUrl = [];
         foreach ($productList as $key => $product) {
             $img = $product->images->all();

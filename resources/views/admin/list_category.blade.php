@@ -1,4 +1,4 @@
-@section('title', 'カテゴリー管理')
+@section('title', 'カテゴリ管理')
 @extends('admin.index')
 @section('content')
     <div class="content-wrapper">
@@ -6,7 +6,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>カテゴリー管理</h1>
+              <h1>カテゴリ管理</h1>
             </div>
           </div>
         </div>
@@ -25,7 +25,7 @@
                         <thead>
                             <tr>
                                 <th>番号</th>
-                                <th>カテゴリー名</th>
+                                <th>カテゴリ名</th>
                                 <th style="width: 47%;">説明</th>
                                 <th>アクション</th>
                             </tr>
@@ -63,7 +63,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">カテゴリーを削除？</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">カテゴリを削除？</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -72,7 +72,7 @@
                     <form method="post" id="formDelete">
                         @csrf
                         <input type="hidden" name="_method" value="delete">
-                        このカテゴリーを削除しますか？
+                        このカテゴリを削除しますか？
                     </form>
                 </div>
                 <div class="modal-footer">

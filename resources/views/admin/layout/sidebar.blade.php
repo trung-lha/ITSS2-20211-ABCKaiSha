@@ -49,7 +49,7 @@
             <a href="{{route('category')}}" class="nav-link @if(\Route::currentRouteName() == 'category') active @endif">
               <i class="nav-icon fas fa-list-alt"></i>
               <p>
-                カテゴリー
+                カテゴリ
               </p>
             </a>
           </li>
