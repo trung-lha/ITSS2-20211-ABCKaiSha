@@ -1,6 +1,6 @@
 
 <section>
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light justify-content-between">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -10,7 +10,11 @@
         <a href="{{ route('user.home') }}" class="nav-link">ホーム</a>
       </li>
     </ul>
-
+    <ul class="navbar-nav">
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{route('admin.logout')}}" class="nav-link">ログアウト</a>
+      </li>
+    </ul>
 </nav>
 
   <aside class="main-sidebar sidebar-dark-primary elevation-4">

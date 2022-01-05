@@ -41,7 +41,7 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'contact'])->name('contact.post');
 Route::get('/company-intro', [CompanyIntroController::class, 'index'])->name('intro');
 
-Route::get('/admin/login', [AuthController::class, 'get'])->name('admin.login');
+Route::get('/admin/login', [AuthController::class, 'get'])->middleware('auth')->name('admin.login');
 Route::post('/admin/login', [AuthController::class, 'post'])->name('admin.login.post');
 Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 
