@@ -70,14 +70,14 @@ class PlanController extends Controller
         return redirect()->route('user.home');
     }
 
-    public function edit($id)
-    {
-
-    }
-
     public function update(Request $request, $id)
     {
-        
+
+        Plan::find($id)->update([
+            'status' => $request->status
+        ]);
+
+        dd("Successfully");
     }
 
     public function destroy($id)
