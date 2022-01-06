@@ -135,7 +135,7 @@
 </section>
 <script>
   function postsubmit() {
-    if ($('#plan-choices').val().length > 3) {
+    if ($('#plan-choices').val().length > 3 || $('#plan-choices').val().length < 1) {
       return alert('最大3つのプランを選択してください');
     } else {
       var form = document.getElementById('form_contact').submit();
