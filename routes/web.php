@@ -50,7 +50,7 @@ Route::get('/plans/{id}/update', [PlanController::class, 'edit']);
 Route::get('/plans/{id}/delete', [PlanController::class, 'destroy']);
 // end TEST PLAN
 
-Route::get('/admin/login', [AuthController::class, 'get'])->middleware('auth')->name('admin.login');
+Route::get('/admin/login', [AuthController::class, 'get'])->middleware('exits_user')->name('admin.login');
 Route::post('/admin/login', [AuthController::class, 'post'])->name('admin.login.post');
 Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 // ->middleware(['auth'])
