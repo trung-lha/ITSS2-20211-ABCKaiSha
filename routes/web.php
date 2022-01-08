@@ -50,8 +50,9 @@ Route::post('/plans/update/{id}', [PlanController::class, 'update'])->name('plan
 Route::get('/plans/{id}/delete', [PlanController::class, 'destroy']);
 // end TEST PLAN
 
-Route::prefix('admin')->group(function () {
-    Route::get('/login', [AuthController::class, 'get'])->name('admin.login');
+Route::get('admin/login', [AuthController::class, 'get'])->middleware('exits_user')->name('admin.login');
+
+Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('/login', [AuthController::class, 'post'])->name('admin.login.post');
     Route::get('/logout', [AuthController::class, 'logout'])->name('admin.logout');
 
