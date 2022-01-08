@@ -13,13 +13,11 @@ class CreatePlanProductTable extends Migration
      */
     public function up()
     {
-        Schema::create('plan_products', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('plan_product', function (Blueprint $table) {
             $table->bigInteger('plan_id')->unsigned();
             $table->bigInteger('product_id')->unsigned();
+            $table->string('productName');
 
-            $table->foreign('plan_id')->references('id')->on('plans')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreatePlanProductTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plan_products');
+        Schema::dropIfExists('plan_product');
     }
 }

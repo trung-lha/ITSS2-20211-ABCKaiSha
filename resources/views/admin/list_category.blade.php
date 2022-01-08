@@ -1,4 +1,4 @@
-@section('title', 'カテゴリ管理')
+@section('title', 'カテゴリー管理')
 @extends('admin.index')
 @section('content')
     <div class="content-wrapper">
@@ -6,7 +6,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>カテゴリ管理</h1>
+              <h1>カテゴリー管理</h1>
             </div>
           </div>
         </div>
@@ -17,7 +17,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title mt-2">カテゴリ一覧</h3>
+                    <h3 class="card-title mt-2">カテゴリー一覧</h3>
                     <a href="{{ route('category.create') }}"><button class="btn btn-success float-right" >新規追加</button></a>
                 </div>
                 <div class="card-body">
@@ -25,7 +25,7 @@
                         <thead>
                             <tr>
                                 <th>番号</th>
-                                <th>カテゴリ名</th>
+                                <th>カテゴリー名</th>
                                 <th style="width: 47%;">説明</th>
                                 <th>アクション</th>
                             </tr>
@@ -63,7 +63,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">カテゴリを削除？</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">カテゴリーを削除？</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -72,7 +72,7 @@
                     <form method="post" id="formDelete">
                         @csrf
                         <input type="hidden" name="_method" value="delete">
-                        このカテゴリを削除しますか？
+                        このカテゴリーを削除しますか？
                     </form>
                 </div>
                 <div class="modal-footer">

@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Plan;
 
 class Product extends Model
 {
     use HasFactory;
 
     protected $fillable = ['name', 'description', 'category_id', 'month'];
+    protected $table = 'products';
     public $timestamps = true;
 
     public function format()
@@ -35,6 +37,6 @@ class Product extends Model
     }
 
     public function plans() {
-        return $this->belongsToMany('App\Models\Plan', 'plan_products', 'product_id', 'plan_id');
+        return $this->belongsToMany(Plan::class, 'plan_product');
     }
 }

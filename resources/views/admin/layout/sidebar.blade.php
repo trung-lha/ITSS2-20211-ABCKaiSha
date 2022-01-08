@@ -53,7 +53,7 @@
             <a href="{{route('category')}}" class="nav-link @if(\Route::currentRouteName() == 'category') active @endif">
               <i class="nav-icon fas fa-list-alt"></i>
               <p>
-                カテゴリ
+                カテゴリー
               </p>
             </a>
           </li>
@@ -65,7 +65,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ route('admin.candidate') }}" class="nav-link">
+            <a href="{{ route('admin.candidate') }}" class="nav-link @if(\Route::currentRouteName() == 'admin.candidate') active @endif">
               <i class="nav-icon fas fa-columns"></i>
               <p>
                 応募者候補
@@ -73,42 +73,21 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('contacts')}}" class="nav-link">
+            <a href="{{route('contacts')}}" class="nav-link @if(\Route::currentRouteName() == 'contacts') active @endif">
               <i class="nav-icon fas fa-phone"></i>
               <p>
                 問い合わせ
               </p>
             </a>
           </li>
-          {{-- <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
+          <li class="nav-item">
+            <a href="{{route('admin.plans')}}" class="nav-link @if(\Route::currentRouteName() == 'admin.plans') active @endif">
+              <i class="nav-icon fa fas fa-book"></i>
               <p>
-                Mailbox
-                <i class="fas fa-angle-left right"></i>
+                無料お試しプラン
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../mailbox/mailbox.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inbox</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../mailbox/compose.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Compose</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../mailbox/read-mail.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Read</p>
-                </a>
-              </li>
-            </ul>
-          </li> --}}
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

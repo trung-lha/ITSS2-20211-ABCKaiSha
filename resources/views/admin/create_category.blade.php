@@ -1,4 +1,4 @@
-@section('title', 'カテゴリを新規追加')
+@section('title', 'カテゴリーを新規追加')
 @extends('admin.index')
 @section('content')
     <div class="content-wrapper pt-3">
@@ -10,7 +10,7 @@
               <div class="card">
                 <div class="card-header">
                     <a href="{{route('category')}}" class="float-right"><button type="button" class="btn btn-secondary"><i class="fa fa-arrow-left"></i>&nbsp;戻る</button></a>
-                    <h3 class=" mt-2 text-left">カテゴリを新規追加</h3>
+                    <h3 class=" mt-2 text-left">カテゴリーを新規追加</h3>
                 </div>
                 <div class="card-body">
                     <form class="container" id="form_create" enctype="multipart/form-data" method="POST" action="{{route('category.store')}}">
@@ -32,7 +32,7 @@
                             </div>
                         @endif
                         <div class="form-group">
-                            <label for="category_name_create">カテゴリ名 <span style="color: red">*</span></label>
+                            <label for="category_name_create">カテゴリー名 <span style="color: red">*</span></label>
                             <input type="text" name="name" class="form-control" id="category_name_create" required value="{{old('name')}}">
                         </div>
                         <div class="form-group">
