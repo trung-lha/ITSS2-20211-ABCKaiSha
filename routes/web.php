@@ -51,9 +51,9 @@ Route::get('/plans/{id}/delete', [PlanController::class, 'destroy']);
 // end TEST PLAN
 
 Route::get('admin/login', [AuthController::class, 'get'])->middleware('exits_user')->name('admin.login');
+Route::post('admin/login', [AuthController::class, 'post'])->name('admin.login.post');
 
 Route::prefix('admin')->middleware('auth')->group(function () {
-    Route::post('/login', [AuthController::class, 'post'])->name('admin.login.post');
     Route::get('/logout', [AuthController::class, 'logout'])->name('admin.logout');
 
     Route::get('/', [ProductController::class, 'index']);
