@@ -43,18 +43,18 @@ Route::post('/contact', [ContactController::class, 'contact'])->name('contact.po
 Route::get('/company-intro', [CompanyIntroController::class, 'index'])->name('intro');
 
 // TEST: ko xoa
-Route::get('plan', [PlanController::class, 'index']);
+Route::get('plan', [PlanController::class, 'index'])->name("plan.index");
 Route::get('/plans', [PlanController::class, 'create'])->name('test-plan');
 Route::post('/plans', [PlanController::class, 'store'])->name('plan.store');
-Route::get('/plans/{id}/update', [PlanController::class, 'edit']);
+Route::post('/plans/update/{id}', [PlanController::class, 'update'])->name('plans.update');
 Route::get('/plans/{id}/delete', [PlanController::class, 'destroy']);
 // end TEST PLAN
 
-Route::get('/admin/login', [AuthController::class, 'get'])->middleware('exits_user')->name('admin.login');
-Route::post('/admin/login', [AuthController::class, 'post'])->name('admin.login.post');
-Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
-// ->middleware(['auth'])
-Route::prefix('admin')->middleware(['auth'])->group(function () {
+Route::prefix('admin')->group(function () {
+    Route::get('/login', [AuthController::class, 'get'])->name('admin.login');
+    Route::post('/login', [AuthController::class, 'post'])->name('admin.login.post');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('admin.logout');
+
     Route::get('/', [ProductController::class, 'index']);
     Route::get('/products', [ProductController::class, 'index'])->name('admin.index');
     Route::get('/products/create', [ProductController::class, 'create'])->name('admin.product.create');
@@ -79,8 +79,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::get('/contacts', [ContactController::class, 'index_ad'])->name('contacts');
     Route::patch('/contacts/{id}/status', [ContactController::class, 'update_status']);
+    Route::post('/contacts/status/update/{id}', [ContactController::class, 'update'])->name('contact.update');
     Route::get('/candidate', [CandidateController::class, 'index'])->name('admin.candidate');
     Route::post('/candidate/store', [CandidateController::class, 'store'])->name('admin.candidate.store');
     Route::post('/candidate/process/{candidateId}', [CandidateController::class, 'candidateProcess'])->name('admin.candidate.process');
 
+    Route::get('/plans', [PlanController::class, 'index_ad'])->name('admin.plans');
 });

@@ -68,4 +68,15 @@ class ContactController extends Controller
 
         return response(['data' => $status], 200);
     }
+
+    public function update(Request $request, $id)
+    {
+
+        Contact::find($id)->update([
+            'status' => $request->status
+        ]);
+
+        return redirect()->back();
+    }
+
 }

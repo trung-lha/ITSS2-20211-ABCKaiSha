@@ -9,6 +9,7 @@ class PlanProduct extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_id', 'plan_id'];
+    protected $fillable = ['product_id', 'plan_id', 'productName'];
+    protected $table = 'plan_product';
     public $timestamps = true;
 }

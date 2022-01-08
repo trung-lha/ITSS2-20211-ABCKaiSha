@@ -26,36 +26,38 @@
                     <th>名前</th>
                     <th>電話番号</th>
                     <th>メールアドレス</th>
-                    <th>年齢</th>
-                    <th>経験説明</th>
-                    <th>住所</th>
+                    <th>お試し商品</th>
+                    <th>内容</th>
                     <th>状態</th>
                     <th>アクション</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @if (empty($candidates) == false)
-                  @foreach($candidates as $candidate)
-                  <tr>
-                    <td>{{ $candidate['name'] }}</td>
-                    <td>{{ $candidate['phoneNumber'] }}</td>
-                    <td>{{ $candidate['mail'] }}</td>
-                    <td>{{ $candidate['age'] }}</td>
-                    <td>{{ $candidate['description'] }}</td>
-                    <td>{{ $candidate['address'] }}</td>
-                    <td>
-                      @if ($candidate['status'] == 1)
-                      <strong style="color: green">人事部へ送信済み</strong>
-                      @else
-                      <strong style="color: grey">処理なし</strong>
-                      @endif
-                    </td>
-                    <td style="text-align: center;">
-                      @if ($candidate['status'] == 0)
-                      <i class="fa fas fa-check fa-lg approved" style="color: green; cursor: pointer;" data-id="{{$candidate['id']}}"></i>
-                      @endif
-                    </td>
-                  </tr>
+                  @if (empty($plans) == false)
+                  @foreach($plans as $index => $plan)
+                    <tr>
+                        <td>{{ $plan['username'] }}</td>
+                        <td>{{ $plan['phone'] }}</td>
+                        <td>{{ $plan['email'] }}</td>
+                        <td>
+                            @foreach ($productsOfPlans[$index] as $productName)
+                                <p>{{ $productName }}</p>
+                            @endforeach
+                        </td>
+                        <td>{{ $plan['content'] }}</td>
+                        <td>
+                            @if ($plan['status'] == 1)
+                                <strong style="color: green">処理済み</strong>
+                            @else
+                                <strong style="color: grey">処理なし</strong>
+                            @endif
+                        </td>
+                        <td style="text-align: center;">
+                            @if ($plan['status'] == 0)
+                            <i class="fa fas fa-check fa-lg approved" style="color: green; cursor: pointer;" data-id="{{$plan['id']}}"></i>
+                            @endif
+                        </td>
+                    </tr>
                   @endforeach
                   @endif
                 </tbody>
@@ -89,10 +91,10 @@
   });
 
   $(document).ready(function() {
-    $('td .approved').on('click', function(id = 1) {
+    $('td .approved').on('click', function() {
       var id = $(this).attr("data-id");
       var form = $('#my-form');
-      var url = `{{url('/admin/candidate/process/')}}/${id}`;
+      var url = `{{url('/plans/update')}}/${id}`;
 
       form.attr("action", url);
       $('#action-status').val(1);

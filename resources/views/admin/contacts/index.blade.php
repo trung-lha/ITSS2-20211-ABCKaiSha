@@ -27,6 +27,7 @@
                                 <th>名前</th>
                                 <th style="width: 300px">内容</th>
                                 <th>メールアドレス</th>
+                                <th>状態</th>
                                 <th>アクション</th>
                             </tr>
                         </thead>
@@ -34,23 +35,25 @@
                             @if (empty($contacts) == false)
                             @foreach($contacts as $i => $contact)
                             <tr>
-                                <td>{{$i+1}}</td>
-                                <td>{{$contact['username']}}</td>
-                                <td>
-                                  <p style="font-weight: bolder">{{$contact['content']}}</p>
-                                  <p style="white-space: pre-wrap;text-align: justify;">{{$contact['contactbody']}}</p>
-                                </td>
-                                <td>{{$contact['email']}}</td>
-                                <td style="text-align: center; width: 100px;">
-                                    <div class="custom-control custom-switch">
-                                      <input type="checkbox" class="custom-control-input" 
-                                        id="checkSwitch_{{$contact['id']}}" 
-                                        onchange="changeStatus(event,`{{$contact['id']}}`)"
-                                        {{$contact['status'] === 1? 'disabled checked':''}}
-                                      >
-                                      <label class="custom-control-label" for="checkSwitch_{{$contact['id']}}"></label>
-                                    </div>
-                                </td>
+                              <td>{{$i+1}}</td>
+                              <td>{{$contact['username']}}</td>
+                              <td>
+                                <p style="font-weight: bolder">{{$contact['content']}}</p>
+                                <p style="white-space: pre-wrap;text-align: justify;">{{$contact['contactbody']}}</p>
+                              </td>
+                              <td>{{$contact['email']}}</td>
+                              <td>
+                                @if ($contact['status'] == 1)
+                                    <strong style="color: green">処理済み</strong>
+                                @else
+                                    <strong style="color: grey">処理なし</strong>
+                                @endif
+                              </td>
+                              <td style="text-align: center;">
+                                @if ($contact['status'] == 0)
+                                <i class="fa fas fa-check fa-lg approved" style="color: green; cursor: pointer;" data-id="{{$contact['id']}}"></i>
+                                @endif
+                              </td>
                             </tr>
                             @endforeach
                             @endif
@@ -61,6 +64,10 @@
             </div>
           </div>
         </div>
+        <form action="" method="post" id="my-form">
+          @csrf
+          <input type="hidden" name="status" value="" id="action-status">
+        </form>
       </section>
     </div>
     <aside class="control-sidebar control-sidebar-dark">
@@ -68,22 +75,6 @@
     </aside>
 
 <script>
-
-  function changeStatus(event, id = 1) {
-    var status = event.target.checked;
-    var endpoint = `${id}/status`;
-    $.ajax({
-      url: `{{url('admin/contacts')}}/${endpoint}`,
-      type: 'PATCH',
-      data: {
-        '_token': '{{csrf_token()}}',
-        '_method': `{{method_field('PATCH')}}`,
-        status: status
-      }
-    }).done(result => {
-      $(`#checkSwitch_${id}`).prop('disabled', true);
-    }).fail(error => console.error(error));
-  }
   $(function () {
     $('#contacts-list').DataTable({
       "paging": true,
@@ -93,6 +84,18 @@
       "info": true,
       "autoWidth": false,
       "responsive": true,
+    });
+  });
+
+  $(document).ready(function() {
+    $('td .approved').on('click', function() {
+      var id = $(this).attr("data-id");
+      var form = $('#my-form');
+      var url = `{{url('admin/contacts/status/update')}}/${id}`;
+
+      form.attr("action", url);
+      $('#action-status').val(1);
+      $('#my-form').submit();
     });
   });
 </script>

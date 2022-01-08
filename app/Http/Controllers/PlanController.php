@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Plan;
 use App\Models\PlanProduct;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PlanController extends Controller
@@ -12,13 +13,25 @@ class PlanController extends Controller
     //
     public function index()
     {
+        $now = Carbon::now();
+        $month = $now->month;
+
+        $products = Product::where('month', $month)->get();
+        return view ('users.plan.index', compact('products'));
+    }
+
+    public function index_ad()
+    {
         $plans = Plan::get();
-
-        foreach ($plans as $key => $plan) {
-            $plans[$key] = $plan->format();
+        $productsOfPlans = [];
+        foreach ($plans as $plan){
+            $array_name = [];
+            foreach ($plan->products as $index => $product) {
+                array_push($array_name, $product->pivot->productName);
+            }
+            array_push($productsOfPlans, $array_name);
         }
-
-        dd($plans);
+        return view('admin.plans.index', compact('plans', 'productsOfPlans'));
     }
 
     public function create()
@@ -61,9 +74,11 @@ class PlanController extends Controller
         $plan_id = Plan::create($plan)->id;
 
         foreach ($plan_choices['plan-choices'] as $product_id) {
+            $productName = Product::find($product_id)->name;
             PlanProduct::create([
                 'product_id' => (int)$product_id,
-                'plan_id' => $plan_id
+                'plan_id' => $plan_id,
+                'productName' => $productName
             ]);
         }
 
@@ -77,7 +92,7 @@ class PlanController extends Controller
             'status' => $request->status
         ]);
 
-        dd("Successfully");
+        return redirect()->back();
     }
 
     public function destroy($id)
