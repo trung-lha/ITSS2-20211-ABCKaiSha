@@ -10,17 +10,36 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+
+    <style>
+        .body {
+            background-image: url("{{asset('images/bg_login.png')}}");
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .text-sha {
+            color: whitesmoke;
+            text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 
-<body>
+<body class="body">
     <div class="wrapper fadeInDown">
+        <div class="container text-center mb-3">
+            <h1 class="text-uppercase font-weight-bold text-sha">なにぬね会社</h1>
+        </div>
         <div id="formContent">
-            <!-- Tabs Titles -->
-
             <!-- Icon -->
-            <div class="fadeIn first">
-                <!-- <img src="https://img.icons8.com/cute-clipart/64/000000/login-rounded-right.png" id="icon" alt="User Icon" width="70" height="70" /> -->
-                <img src="https://img.icons8.com/external-bearicons-gradient-bearicons/64/000000/external-login-call-to-action-bearicons-gradient-bearicons-1.png" id="icon" alt="User Icon" />
+            <div class="fadeIn first" style="margin-top: 20px;">
+                <h3 class="font-weight-bold">管理者</h3>
+                <h3 class="font-weight-bold">ロクイン</h3>
             </div>
 
             <!-- Login Form -->
