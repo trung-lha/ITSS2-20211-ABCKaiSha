@@ -27,6 +27,13 @@ class CandidateController extends Controller
             'address' => $request->address,
             'exp' => $request->exp
         ];
+        $request->validate([
+            'phone' => 'required|max:10|min:10'
+        ],
+        [
+            'phone.max' => "電話番号は10文字です"
+        ]
+        );
 
         Mail::to('hrnaninukaisha@gmail.com')->send(new \App\Mail\RecruitMail($details));
 
