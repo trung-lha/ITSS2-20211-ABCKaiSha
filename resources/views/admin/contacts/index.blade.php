@@ -50,9 +50,10 @@
                                 @endif
                               </td>
                               <td style="text-align: center;">
-                                @if ($contact['status'] == 0)
-                                <i class="fa fas fa-check fa-lg approved" style="color: green; cursor: pointer;" data-id="{{$contact['id']}}"></i>
-                                @endif
+                                <div class="custom-control custom-switch">
+                                  <input type="checkbox" class="custom-control-input @if($contact['status'] == 1) un-approved @else approved @endif" id="customSwitch1" data-id="{{$contact['id']}}" @if($contact['status'] == 1) checked @endif>
+                                  <label class="custom-control-label" for="customSwitch1"></label>
+                                </div>
                               </td>
                             </tr>
                             @endforeach
@@ -95,6 +96,16 @@
 
       form.attr("action", url);
       $('#action-status').val(1);
+      $('#my-form').submit();
+    });
+
+    $('td .un-approved').on('click', function() {
+      var id = $(this).attr("data-id");
+      var form = $('#my-form');
+      var url = `{{url('admin/contacts/status/update')}}/${id}`;
+
+      form.attr("action", url);
+      $('#action-status').val(0);
       $('#my-form').submit();
     });
   });

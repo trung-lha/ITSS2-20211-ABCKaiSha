@@ -61,8 +61,7 @@
                     </div>
                     <div class="form-group">
                         <label style="float: left">実務経験 <span style="color: red">*</span></label>
-                        <textarea class="form-control text-left px-3" style="height: 150px" name="exp" placeholder="グラブフードの荷送人の経営に1年の経験があり&#10;バイクの免許を持っている" required>
-                        </textarea>
+                        <textarea class="form-control text-left px-3" style="height: 150px" name="exp" placeholder="グラブフードの荷送人の経営に1年の経験があり&#10;バイクの免許を持っている" required></textarea>
                     </div>
                     <div>
                         <button class="btn btn-success register" type="submit" id="form-submit">登録</button>
