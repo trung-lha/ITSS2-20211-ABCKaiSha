@@ -99,6 +99,6 @@ class PlanController extends Controller
     {
         Plan::destroy($id);
 
-        dd("Successfully");
+        return redirect(back());
     }
 }
