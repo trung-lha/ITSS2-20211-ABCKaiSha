@@ -45,50 +45,36 @@
     padding-left: 15px;
     padding-right: 15px;
     background: transparent !important;
-    color: rgba(0, 0, 0, 0.4) !important;
+    color: black !important;
     font-size: 14px;
     border-radius: 0px;
     -webkit-box-shadow: none !important;
     box-shadow: none !important; }
-    .billing-form .form-control::-webkit-input-placeholder {
-        /* Chrome/Opera/Safari */
-        color: rgba(0, 0, 0, 0.4); }
-    .billing-form .form-control::-moz-placeholder {
-        /* Firefox 19+ */
-        color: rgba(0, 0, 0, 0.4); }
-    .billing-form .form-control:-ms-input-placeholder {
-        /* IE 10+ */
-        color: rgba(0, 0, 0, 0.4); }
-    .billing-form .form-control:-moz-placeholder {
-        /* Firefox 18- */
-        color: rgba(0, 0, 0, 0.4); }
     .billing-form .form-control:focus, .billing-form .form-control:active {
         border-color: #82ae46 !important; }
 </style>
 <div class="container">
-<section class="ftco-section">
+<section class="col-10 offset-1 ftco-section">
+    <div class="row justify-content-center mb-5 pb-3">
+        <div class="col-md-12 heading-section ftco-animate text-center">
+        <h2 class="mb-4">自然・環境を守り、安心・安全な食べものをお届け</h2>
+        </div>
+    </div>
     @include('users.layout.slider')
-    <div class="container mt-5" id="homeRef">
-        <div class="row justify-content-center mb-3">
-            <div class="col-md-10 text-center">
-                <ul class="product-category">
-                    @foreach ($categories as $item)
-                        <li><a href="" data-id="{{ $item->id }}" class="category {{ $item->id === 1 ? 'active' : ''}}">{{$item->name}}</a></li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-        <div class="row justify-content-center mb-3 pb-3">
-            <div class="col-md-12 heading-section">
-                @foreach($categories as $item)
-                <h3 class="{{ $item->id != 1 ? 'd-none' : 'd-active'}}" id="category-title-{{$item->id}}" style="text-align: center;">{{$item->name}}</h3>
-                <div class="{{ $item->id != 1 ? 'd-none' : 'd-active'}}" id="description-{{ $item->id }}">{{$item->description}}</div>
-                @endforeach
-            </div>
-        </div>
+    <div class="mt-5" id="homeRef">
         <form action="#" class="billing-form">
-            <div class="d-flex justify-content-center mb-3 align-items-baseline">
-                <label for="month" class="mr-3"><span><i class="fas fa-filter" style="color: gray"></i></span> フィルター: </label>
+            <div class="d-flex mb-3 align-items-baseline">
+                <label class="mr-5"><span><i class="fas fa-filter" style="color: gray"></i></span> フィルター: </label>
+                <div class="form-group mr-3" style="width: 120px">
+                    <div class="select-wrap">
+                        <div class="icon"><span class="fas fa-angle-down"></span></div>
+                        <select name="" id="category-selection" class="form-control">
+                            @foreach ($categories as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <div class="form-group" style="width: 120px">
                     <div class="select-wrap">
                         <div class="icon"><span class="fas fa-angle-down"></span></div>
@@ -101,6 +87,14 @@
                 </div>
             </div>
         </form>
+        <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section">
+                @foreach($categories as $item)
+                <h3 class="{{ $item->id != 1 ? 'd-none' : 'd-active'}}" id="category-title-{{$item->id}}" style="text-align: center;">{{$item->name}}</h3>
+                <div class="{{ $item->id != 1 ? 'd-none' : 'd-active'}}" id="description-{{ $item->id }}">{{$item->description}}</div>
+                @endforeach
+            </div>
+        </div>
         <div id="list-productItems">
             @include('users.listProducts', ['productList' => $products])
         </div>
@@ -109,10 +103,9 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function (){
-        $(".category").on('click', function(event) {
-            event.preventDefault();
-            $('.category').removeClass("active");
-            var id = $(this).data('id');
+        $('#category-selection').change(function (e) {
+            const id = $(this).val();
+            const month = $('#month-selection').val();
 
             $('h3.d-active').removeClass('d-active').addClass('d-none');
             $('div.d-active').removeClass('d-active').addClass('d-none');
@@ -120,9 +113,6 @@
             $(`#category-title-${id}`).removeClass('d-none').addClass('d-active');
             $(`#description-${id}`).removeClass('d-none').addClass('d-active');
 
-            $(this).addClass("active");
-
-            var month = $('#month-selection').val();
             $.ajax({
                 url: "{{ route('user.home') }}" + '/' + id + '/' + parseInt(month),
                 method: "GET",
@@ -132,7 +122,7 @@
             });
         });
         $('#month-selection').change(function (e) {
-            const categoryId = $(".category.active").data('id')
+            const categoryId = $('#category-selection').val()
             $.ajax({
                 url: "home/"+ categoryId + `/${$(this).val()}`+ "?page=1",
                 method: "GET",
@@ -144,24 +134,24 @@
         $(document).on('click', '.pagination a', function(event) {
             event.preventDefault();
             var link = $(this).attr('href').split("/")[4];
-            var categoryId = 1;
+            const categoryId = $('#category-selection').val()
+            const month = $('#month-selection').val();
             var page;
             if (link && link.includes('?')) {
-                categoryId = link.split("?", 1);
                 page = link.split("?page=")[1];
             } else {
                 page = $(this).attr('href').split("?page=")[1];
             }
 
-            getMoreProduct(categoryId, page);
+            getMoreProduct(categoryId, month, page);
             $('html,body').animate({
               scrollTop: $('#homeRef').offset().top
             }, 500);
         });
 
-        function getMoreProduct(categoryId = 1, page){
+        function getMoreProduct(categoryId = 1, month, page){
             $.ajax({
-                url: "home/"+ categoryId + "?page=" + page,
+                url: "home/"+ categoryId + `/${month}` + "?page=" + page,
                 method: "GET",
                 success: function(data) {
                     $('#list-productItems').html(data);
