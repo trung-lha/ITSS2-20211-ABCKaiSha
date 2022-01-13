@@ -45,7 +45,8 @@ class ProductController extends Controller
         }
         $months = ['一月', '二月', '三月', '四月', '五月', '六月',
                     '七月', '八月', '九月', '十月', '十一月', '十二月'];
-        return view('users.home', compact('products', 'categories', 'imageUrl', 'month', 'months'));
+        $months[idate('m')-1] .= ' (現在)' ;
+        return view('users.home', compact('products', 'categories', 'imageUrl', 'months'));
     }
     public function detailProduct(Request $request)
     {
