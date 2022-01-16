@@ -55,11 +55,11 @@
 </style>
 <div class="container">
 <section class="col-10 offset-1 ftco-section">
-    <div class="row justify-content-center mb-5 pb-3">
+    <!-- <div class="row justify-content-center mb-5 pb-3">
         <div class="col-md-12 heading-section ftco-animate text-center">
         <h2 class="mb-4">自然・環境を守り、安心・安全な食べものをお届け</h2>
         </div>
-    </div>
+    </div> -->
     @include('users.layout.slider')
     <div class="mt-5" id="homeRef">
         <form action="#" class="billing-form">

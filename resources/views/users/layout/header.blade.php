@@ -23,7 +23,14 @@
             <div class="overlay"></div>
             <div class="container">
                 <div class="row slider-text justify-content-center align-items-center">
-                    <div class="col-md-12 ftco-animate text-center">
+
+                    
+                    <div class="col-md-12 ftco-animate">
+                        <div style="font-size: 3rem; color: white; font-weight: bolder">自然・環境を守り、安心・安全な食べものをお届け</div>
+                        <div class="mt-5">
+                            <span class="mr-5"><a href="{{route('plan.index')}}" class="btn btn-primary">無料お試し</a></span>
+                            <span><a href="{{route('recruitment.list')}}" class="btn btn-primary">ドライバーになろう</a></span>
+                        </div>
                     </div>
                 </div>
             </div>
